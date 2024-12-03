@@ -8,21 +8,33 @@ $LabelObject = [System.Windows.Forms.Label] # Text #MenuText
 $ButtonObject = [System.Windows.Forms.Button] # Buttons #MenuButton
 $ComboBox = [System.Windows.Forms.ComboBox] # ComboBox
 
-$PanelText=New-Object $LabelObject # Sets the label
-$PanelText.Text='♜ [O/S Project✔] ➣ 穏やかな.exe                                                   ⍰ ❏ ✖' # Text
-$PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
+# Create the first panel with a background color
+$Panel = New-Object System.Windows.Forms.Panel
 $backgroundHexColor = "#073AA3" #hex color
-$PanelText.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$Panel.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$Panel.Dock = [System.Windows.Forms.DockStyle]::Top
+$Panel.Height = 50
+
+$PanelText=New-Object $LabelObject # Sets the label
+$PanelText.Text='♜ [O/S Project✔] ➣ 穏やかな.exe                                                 ⍰ ❏ ✖' # Text
+$PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
 $PanelText.AutoSize= $true
-$PanelText.Font='Impact,13' #Font, Size, style=style
+$PanelText.Font='Impact, 13, style=Bold'
 $PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y
 
-# Create the first panel with a background color
-$Panel1 = New-Object System.Windows.Forms.Panel
-$backgroundHexColor = "#073AA3" #hex color
-$Panel1.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel1.Dock = [System.Windows.Forms.DockStyle]::Top
-$Panel1.Height = 50
+$Panel2 = New-Object System.Windows.Forms.Panel
+$backgroundHexColor = "#E6E6E6" #hex color
+$Panel2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$Panel2.Size = New-Object System.Drawing.Size(260, 300)
+$Panel2.Location = New-Object System.Drawing.Point(30, 90)
+$Panel2.Visible = $false
+
+$Panel3 = New-Object System.Windows.Forms.Panel
+$backgroundHexColor = "#E6E6E6" #hex color
+$Panel3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$Panel3.Size = New-Object System.Drawing.Size(440, 300)
+$Panel3.Location = New-Object System.Drawing.Point(30, 90)
+$Panel3.Visible = $false
 
 $HeaderText=New-Object $LabelObject # Sets the label
 $HeaderText.Text='Need Help?' # Text
@@ -54,7 +66,7 @@ $MenuText2=New-Object $LabelObject # Sets the label
 $MenuText2.Text='Welcome...' # Text
 $MenuText2.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#374375") #Font color
 $MenuText2.AutoSize= $true
-$MenuText2.Font='Grandview,32' #Font, Size, style=style
+$MenuText2.Font='Grandview, 32, style=Bold' #Font, Size, style=style
 $MenuText2.Location=New-Object System.Drawing.Point(50,190) # x, y
 
 $MenuText3=New-Object $LabelObject # Sets the label
@@ -113,10 +125,31 @@ $MenuButton.Add_Click({ # Triggers when ADC button is clicked
     $MenuWindow.Close()
 })
 
-# Abtn2.AddClick - For Disk Usage Analyzer
+#$MenuButton2.AddClick - For Disk Usage Analyzer
+
+$MenuButton3.Add_Click({
+    if ($Panel2.Visible) {
+        $Panel2.SendToBack()  # Move the panel behind the form background
+        $Panel2.Visible = $false
+    } else {
+        $Panel2.Visible = $true
+        $Panel2.BringToFront()  # Bring the panel to the front
+    }
+})
+
+$MenuButton4.Add_Click({ #Triggers when Learn More about devs is clicked
+    if ($Panel3.Visible) {
+        $Panel3.SendToBack()  # Move the panel behind the form background
+        $Panel3.Visible = $false
+    } else {
+        $Panel3.Visible = $true
+        $Panel3.BringToFront()  # Bring the panel to the front
+    }
+})
 
 #MenuWindow attachments(text, buttons, dropdownlist)
-$MenuWindow.Controls.AddRange(@($PanelText, $Panel1 , $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4))
+$MenuWindow.Controls.AddRange(@( $Panel, $Panel2, $Panel3, $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4))
+$Panel.Controls.Add($PanelText)
 
 # Form 2 - Automated Disk Cleanup
 $AutoDiskWindow = New-Object $FormObject
@@ -159,7 +192,7 @@ $submit_btn.Add_Click({
         # Schedule the Disk Cleanup task
         Schedule-DiskCleanup -Hour $hour -Minute $minute
         [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled at $($hour):$($minute) daily.")
-        $form2.Close()
+        $MenuWindow.Close()
     } else {
         [System.Windows.Forms.MessageBox]::Show("Please select both hour and minute.", "Error")
     }
