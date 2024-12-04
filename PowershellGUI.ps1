@@ -15,6 +15,7 @@ $Panel.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColo
 $Panel.Dock = [System.Windows.Forms.DockStyle]::Top
 $Panel.Height = 50
 
+#Panel Text in the Homepage
 $PanelText=New-Object $LabelObject # Sets the label
 $PanelText.Text='♜ [O/S Project✔] ➣ 穏やかな.exe                                                 ⍰ ❏ ✖' # Text
 $PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
@@ -22,15 +23,45 @@ $PanelText.AutoSize= $true
 $PanelText.Font='Impact, 13, style=Bold'
 $PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y
 
+#Panel Page for Quick Guide Button
 $Panel2 = New-Object System.Windows.Forms.Panel
-$backgroundHexColor = "#E6E6E6" #hex color
+$backgroundHexColor = "#FFFFFF" #hex color
 $Panel2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel2.Size = New-Object System.Drawing.Size(260, 300)
+$Panel2.Size = New-Object System.Drawing.Size(255, 300)
 $Panel2.Location = New-Object System.Drawing.Point(30, 90)
-$Panel2.Visible = $false
+$Panel2.Visible = $true
 
+#Panel Text in Quick Guide Button
+$PanelText2=New-Object $LabelObject # Sets the label
+$PanelText2.Text='Quick Guide Window  _ ❏ ✖ ' # Text
+$PanelText2.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
+$backgroundHexColor = "#073AA3" #hex color
+$PanelText2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$PanelText2.AutoSize= $true
+$PanelText2.Font='Consolas, 12, style=Bold'
+$PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y
+
+$PanelText3=New-Object $LabelObject # Sets the label
+$PanelText3.Text='Set time for AutoDiskCleanup ➜' # Text
+$PanelText3.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
+$backgroundHexColor = "#FFFFFF" #hex color
+$PanelText3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$PanelText3.AutoSize= $true
+$PanelText3.Font='Consolas, 10'
+$PanelText3.Location=New-Object System.Drawing.Point(10,120) # x, y
+
+$PanelText4=New-Object $LabelObject # Sets the label
+$PanelText4.Text='Check Disk Analyzer ➜➜➜➜➜' # Text
+$PanelText4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
+$backgroundHexColor = "#FFFFFF" #hex color
+$PanelText4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$PanelText4.AutoSize= $true
+$PanelText4.Font='Consolas, 10'
+$PanelText4.Location=New-Object System.Drawing.Point(10,160) # x, y
+
+#Panel Page for Learn More about Devs
 $Panel3 = New-Object System.Windows.Forms.Panel
-$backgroundHexColor = "#E6E6E6" #hex color
+$backgroundHexColor = "#FFFFFF" #hex color
 $Panel3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $Panel3.Size = New-Object System.Drawing.Size(440, 300)
 $Panel3.Location = New-Object System.Drawing.Point(30, 90)
@@ -127,7 +158,7 @@ $MenuButton.Add_Click({ # Triggers when ADC button is clicked
 
 #$MenuButton2.AddClick - For Disk Usage Analyzer
 
-$MenuButton3.Add_Click({
+$MenuButton3.Add_Click({ #Triggers when Quick Guide Button is clicked
     if ($Panel2.Visible) {
         $Panel2.SendToBack()  # Move the panel behind the form background
         $Panel2.Visible = $false
@@ -150,6 +181,7 @@ $MenuButton4.Add_Click({ #Triggers when Learn More about devs is clicked
 #MenuWindow attachments(text, buttons, dropdownlist)
 $MenuWindow.Controls.AddRange(@( $Panel, $Panel2, $Panel3, $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4))
 $Panel.Controls.Add($PanelText)
+$Panel2.Controls.AddRange(@($PanelText2, $PanelText3, $PanelText4))
 
 # Form 2 - Automated Disk Cleanup
 $AutoDiskWindow = New-Object $FormObject
