@@ -49,21 +49,23 @@ $PanelText2.Font='Consolas, 12, style=Bold'
 $PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y
 
 $PanelText3=New-Object $LabelObject # Sets the label
-$PanelText3.Text='Set time for AutoDiskCleanup ➜' # Text
+$PanelText3.Text='Click this to set an automated time to run DiskCleanup               ➜' # Text
 $PanelText3.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$PanelText3.AutoSize= $true
+$PanelText3.AutoSize= $false
 $PanelText3.Font='Consolas, 10'
-$PanelText3.Location=New-Object System.Drawing.Point(10,118) # x, y
+$PanelText3.Size = New-Object System.Drawing.Size(220, 50) # Adjust size for multi-line text
+$PanelText3.Location=New-Object System.Drawing.Point(10,85) # x, y
 
 $PanelText4=New-Object $LabelObject # Sets the label
-$PanelText4.Text='Check DiskAnalyzer           ➜' # Text
+$PanelText4.Text='Click to have a           ➜    comprehensive view of Disk Usage' # Text
 $PanelText4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$PanelText4.AutoSize= $true
+$PanelText4.AutoSize= $false
 $PanelText4.Font='Consolas, 10'
+$PanelText4.Size = New-Object System.Drawing.Size(220, 50) # Adjust size for multi-line text
 $PanelText4.Location=New-Object System.Drawing.Point(10,155) # x, y
 
 #Panel Page for Learn More about Devs
@@ -72,7 +74,7 @@ $backgroundHexColor = "#B3B4BA" #hex color grey
 $Panel3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $Panel3.Size = New-Object System.Drawing.Size(440, 290)
 $Panel3.Location = New-Object System.Drawing.Point(30, 90)
-$Panel3.Visible = $true
+$Panel3.Visible = $false
 
 #Panel Page for Learn More about Devs
 $Panel4 = New-Object System.Windows.Forms.Panel
