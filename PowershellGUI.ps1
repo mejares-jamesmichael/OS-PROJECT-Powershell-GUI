@@ -10,7 +10,7 @@ $ComboBox = [System.Windows.Forms.ComboBox] # ComboBox
 
 # Create the first panel with a background color
 $Panel = New-Object System.Windows.Forms.Panel
-$backgroundHexColor = "#073AA3" #hex color
+$backgroundHexColor = "#000082" #hex color
 $Panel.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $Panel.Dock = [System.Windows.Forms.DockStyle]::Top
 $Panel.Height = 50
@@ -24,7 +24,7 @@ $PanelText.Font='Impact, 13, style=Bold'
 $PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y
 
 $HeaderText=New-Object $LabelObject # Sets the label
-$HeaderText.Text='C:\Windows\system32\powershellGUI.ps1' # Text
+$HeaderText.Text='➭ C:\Windows\system32\powershellGUI.ps1' # Text
 $HeaderText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $HeaderText.AutoSize= $true
 $HeaderText.Font='Consolas,11, style=Underline'
@@ -42,7 +42,7 @@ $Panel2.Visible = $false
 $PanelText2=New-Object $LabelObject # Sets the label
 $PanelText2.Text=' Quick Guide Window _ ❏ ✖ ' # Text
 $PanelText2.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
-$backgroundHexColor = "#073AA3" #hex color
+$backgroundHexColor = "#000082" #hex color
 $PanelText2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText2.AutoSize= $true
 $PanelText2.Font='Consolas, 12, style=Bold'
@@ -84,24 +84,27 @@ $Panel4.Size = New-Object System.Drawing.Size(400, 200)
 $Panel4.Location = New-Object System.Drawing.Point(20, 70)
 $Panel4.Visible = $true
 
+#PanelText for LearnMoreAboutDevs
 $PanelText5=New-Object $LabelObject # Sets the label
 $PanelText5.Text=' DevNote Window ver1.01                 _ ❏ ✖ ' # Text
 $PanelText5.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
-$backgroundHexColor = "#073AA3" #hex color blue
+$backgroundHexColor = "#000082" #hex color blue
 $PanelText5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText5.AutoSize= $true
 $PanelText5.Font='Consolas, 12, style=Bold'
 $PanelText5.Location=New-Object System.Drawing.Point(0,0) # x, y
 
+#PanelText for LearnMoreAboutDevs
 $PanelText6=New-Object $LabelObject # Sets the label
-$PanelText6.Text='C:\Windows\system32\powershellGUI.ps1\ReadDevNote.txt' # Text
+$PanelText6.Text='➭ C:\Windows\system32\powershellGUI.ps1\ReadDevNote.txt' # Text
 $PanelText6.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#B3B4BA" #hex color
 $PanelText6.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText6.AutoSize= $true
-$PanelText6.Font='Consolas, 10,style=Underline'
-$PanelText6.Location=New-Object System.Drawing.Point(10,30) # x, y
+$PanelText6.Font='Consolas, 9,style=Underline'
+$PanelText6.Location=New-Object System.Drawing.Point(10,35) # x, y
 
+#PanelText for LearnMoreAboutDevs
 $PanelText7=New-Object $LabelObject # Sets the label
 $PanelText7.Text='DEV(s)_ n Contributors➭' # Text
 $PanelText7.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
@@ -112,8 +115,9 @@ $PanelText7.Font='Consolas, 20, style=Bold'
 $PanelText7.Size = New-Object System.Drawing.Size(250, 80) # Adjust size for multi-line text
 $PanelText7.Location=New-Object System.Drawing.Point(10,10) # x, y
 
+#PanelText (Members of the group that contributed)
 $PanelText8=New-Object $LabelObject # Sets the label
-$PanelText8.Text='JAMES MICHAEL MEJARES    ########### ### ###### #### ######## ####' # Text
+$PanelText8.Text='JAMES MICHAEL MEJARES  JUSTINE DELIMA' # Text
 $PanelText8.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText8.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
@@ -122,15 +126,60 @@ $PanelText8.Font='Lucida Console, 12'
 $PanelText8.Size = New-Object System.Drawing.Size(230, 80) # Adjust size for multi-line text
 $PanelText8.Location=New-Object System.Drawing.Point(50,90) # x, y
 
-$MenuButton5=New-Object $ButtonObject # CheckTheDevs Button
+#PanelText skull for Learn More about devs
+$PanelText9=New-Object $LabelObject # Sets the label
+$PanelText9.Text='</>' # Text
+$PanelText9.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
+$backgroundHexColor = "#FFFFFF" #hex color
+$PanelText9.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$PanelText9.AutoSize= $false
+$PanelText9.Font='Consolas, 35, style=Bold'
+$PanelText9.Size = New-Object System.Drawing.Size(250, 80) # Adjust size for multi-line text
+$PanelText9.Location=New-Object System.Drawing.Point(285,40) # x, y
+
+#Panel Page for Rating Window
+$Panel5 = New-Object System.Windows.Forms.Panel
+$backgroundHexColor = "#C3C3C3" #hex color grey
+$Panel5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$Panel5.Size = New-Object System.Drawing.Size(250, 180)
+$Panel5.Location = New-Object System.Drawing.Point(10, 10)
+$Panel5.Visible = $false
+
+#PanelText for Rating Window
+$PanelText10=New-Object $LabelObject # Sets the label
+$PanelText10.Text=' Rating Window ver1.0    _ ❏ ✖ ' # Text
+$PanelText10.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
+$backgroundHexColor = "#000082" #hex color blue
+$PanelText10.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$PanelText10.AutoSize= $true
+$PanelText10.Font='Consolas, 10, style=Bold'
+$PanelText10.Location=New-Object System.Drawing.Point(0,0) # x, y
+
+$PanelText11=New-Object $LabelObject # Sets the label
+$PanelText11.Text='    Thanks ★★★☆☆' # Text
+$PanelText11.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
+$backgroundHexColor = "#C3C3C3" #hex color
+$PanelText11.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+$PanelText11.AutoSize= $false
+$PanelText11.Font='Lucida Consolas, 18'
+$PanelText11.Size = New-Object System.Drawing.Size(150, 50) # Adjust size for multi-line text
+$PanelText11.Location=New-Object System.Drawing.Point(50,60) # x, y
+
+#Button for Rating
+$MenuButton5=New-Object $ButtonObject # RateUs! Button
 $MenuButton5.Text='Rate Us! ☻'
 $MenuButton5.AutoSize= $true
 $MenuButton5.Font='Lucida Console, 11, style=Regular'
 $MenuButton5.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000")
-$backgroundHexColor = "#CACBCD" #hex color
+$backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton5.Size=New-Object System.Drawing.Size(10,10)
 $MenuButton5.Location=New-Object System.Drawing.Point(280,150)
+
+
+
+
+
 
 #HomnePage Window
 $MenuWindow=New-Object $FormObject 
@@ -171,7 +220,7 @@ $MenuButton.Text='Disk Cleanup'
 $MenuButton.AutoSize= $true
 $MenuButton.Font='Lucida Console, 11, style=Regular'
 $MenuButton.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000")
-$backgroundHexColor = "#CACBCD" #hex color
+$backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton.Size=New-Object System.Drawing.Size(140,30)
 $MenuButton.Location=New-Object System.Drawing.Point(300,200)
@@ -182,7 +231,7 @@ $MenuButton2.Text='Disk Analyzer'
 $MenuButton2.AutoSize= $true
 $MenuButton2.Font='Lucida Console, 11, style=Regular'
 $MenuButton2.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000")
-$backgroundHexColor = "#CACBCD" #hex color
+$backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton2.Size=New-Object System.Drawing.Size(140,30)
 $MenuButton2.Location=New-Object System.Drawing.Point(300,240)
@@ -193,7 +242,7 @@ $MenuButton3.Text='Quick Guide'
 $MenuButton3.AutoSize= $true
 $MenuButton3.Font='Lucida Console, 11, style=Regular'
 $MenuButton3.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000")
-$backgroundHexColor = "#CACBCD" #hex color
+$backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton3.Size=New-Object System.Drawing.Size(140,30)
 $MenuButton3.Location=New-Object System.Drawing.Point(300,280)
@@ -204,7 +253,7 @@ $MenuButton4.Text='Learn more about the Devs!'
 $MenuButton4.AutoSize= $true
 $MenuButton4.Font='Lucida Console, 11, style=Regular'
 $MenuButton4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000")
-$backgroundHexColor = "#CACBCD" #hex color
+$backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton4.Size=New-Object System.Drawing.Size(140,30)
 $MenuButton4.Location=New-Object System.Drawing.Point(120,400)
@@ -236,12 +285,26 @@ $MenuButton4.Add_Click({ #Triggers when Learn More about devs is clicked
     }
 })
 
+$MenuButton5.Add_Click({ #Triggers when Learn More about devs is clicked
+    if ($Panel5.Visible) {
+        $Panel5.SendToBack()  # Move the panel behind the form background
+        $Panel5.Visible = $false
+    } else {
+        $Panel5.Visible = $true
+        $Panel5.BringToFront()  # Bring the panel to the front
+    }
+})
+
 #MenuWindow attachments(text, buttons, dropdownlist)
 $MenuWindow.Controls.AddRange(@( $Panel, $Panel2, $Panel3, $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4))
 $Panel.Controls.Add($PanelText)
 $Panel2.Controls.AddRange(@($PanelText2, $PanelText3, $PanelText4))
 $Panel3.Controls.AddRange(@($Panel4, $PanelText5, $PanelText6))
-$Panel4.Controls.AddRange(@($PanelText7,$PanelText8, $MenuButton5))
+$Panel4.Controls.AddRange(@($PanelText7,$PanelText8, $PanelText9, $MenuButton5,$Panel5))
+$Panel5.Controls.AddRange(@($PanelText10,$PanelText11))
+
+
+
 
 # Form 2 - Automated Disk Cleanup
 $AutoDiskWindow = New-Object $FormObject
