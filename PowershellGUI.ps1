@@ -1,4 +1,6 @@
 ﻿Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+Import-Module "C:\Users\james\OS-PROJECT-Powershell-GUI\modules\diskusage.psm1"
+Import-Module "C:\Users\james\OS-PROJECT-Powershell-GUI\modules\diskcleanup.psm1"
 
 # Main Menu
 Add-Type -AssemblyName System.Windows.Forms #Type
@@ -17,7 +19,7 @@ $Panel.Height = 50
 
 #Panel Text in the Homepage
 $PanelText=New-Object $LabelObject # Sets the label
-$PanelText.Text='♜ [O/S Project✔] ➣ 穏やかな.exe                                             ⍰   ❏   ✖' # Text
+$PanelText.Text='♜ [O/S Project✔] ➣ 오아시스 .exe                                           ⍰   ❏   ✖' # Text
 $PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
 $PanelText.AutoSize= $true
 $PanelText.Font='Impact, 13, style=Bold'
@@ -117,25 +119,25 @@ $PanelText7.Location=New-Object System.Drawing.Point(10,10) # x, y
 
 #PanelText (Members of the group that contributed)
 $PanelText8=New-Object $LabelObject # Sets the label
-$PanelText8.Text='JAMES MICHAEL MEJARES  JUSTINE DELIMA' # Text
+$PanelText8.Text='James Michael Mejares  Justine Delima       Patricia Relente          Bea Ynion                  John Arroyo' # Text
 $PanelText8.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText8.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText8.AutoSize= $false
-$PanelText8.Font='Lucida Console, 12'
+$PanelText8.Font='Cascadia Code, 10'
 $PanelText8.Size = New-Object System.Drawing.Size(230, 80) # Adjust size for multi-line text
 $PanelText8.Location=New-Object System.Drawing.Point(50,90) # x, y
 
 #PanelText skull for Learn More about devs
 $PanelText9=New-Object $LabelObject # Sets the label
-$PanelText9.Text='</>' # Text
-$PanelText9.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
+$PanelText9.Text=':' # Text
+$PanelText9.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#008282") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText9.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText9.AutoSize= $false
-$PanelText9.Font='Consolas, 35, style=Bold'
-$PanelText9.Size = New-Object System.Drawing.Size(250, 80) # Adjust size for multi-line text
-$PanelText9.Location=New-Object System.Drawing.Point(285,40) # x, y
+$PanelText9.Font='Wingdings, 70'
+$PanelText9.Size = New-Object System.Drawing.Size(250, 90) # Adjust size for multi-line text
+$PanelText9.Location=New-Object System.Drawing.Point(273,30) # x, y
 
 #Panel Page for Rating Window
 $Panel5 = New-Object System.Windows.Forms.Panel
@@ -175,8 +177,6 @@ $backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton5.Size=New-Object System.Drawing.Size(10,10)
 $MenuButton5.Location=New-Object System.Drawing.Point(280,150)
-
-
 
 
 
@@ -258,12 +258,15 @@ $MenuButton4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundH
 $MenuButton4.Size=New-Object System.Drawing.Size(140,30)
 $MenuButton4.Location=New-Object System.Drawing.Point(120,400)
 
-$MenuButton.Add_Click({ # Triggers when ADC button is clicked
-    $AutoDiskWindow.ShowDialog()
-    $MenuWindow.Close()
+
+#BUTTON FUNCTIONALITIES
+$MenuButton.Add_Click({ # Triggers when AutoDiskCleanup button is clicked
+    Get-DiskCleanup
 })
 
-#$MenuButton2.AddClick - For Disk Usage Analyzer
+$MenuButton2.Add_Click({ # Triggers when DiskUsageAnalyzer button is clicked
+    Get-DiskUsageAnalyzer
+})
 
 $MenuButton3.Add_Click({ #Triggers when Quick Guide Button is clicked
     if ($Panel2.Visible) {
@@ -295,7 +298,8 @@ $MenuButton5.Add_Click({ #Triggers when Learn More about devs is clicked
     }
 })
 
-#MenuWindow attachments(text, buttons, dropdownlist)
+
+#MenuWindow attachments(text, buttons, dropdownlist) references for the entire system
 $MenuWindow.Controls.AddRange(@( $Panel, $Panel2, $Panel3, $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4))
 $Panel.Controls.Add($PanelText)
 $Panel2.Controls.AddRange(@($PanelText2, $PanelText3, $PanelText4))
@@ -305,58 +309,6 @@ $Panel5.Controls.AddRange(@($PanelText10,$PanelText11))
 
 
 
-
-# Form 2 - Automated Disk Cleanup
-$AutoDiskWindow = New-Object $FormObject
-$AutoDiskWindow.ClientSize = '400,170'
-$AutoDiskWindow.Text = 'Automated Disk Cleanup'
-$AutoDiskWindow.BackColor = 'white'
-$AutoDiskWindow.StartPosition = 'CenterScreen'
-
-$wText = New-Object $LabelObject # Text Form 2
-$wText.Text = 'Set Time for Disk Cleanup:'
-$wText.Autosize =  $true
-$wText.Size = New-Object System.Drawing.Size(50,20)
-$wText.Location = New-Object System.Drawing.Point(20,30)
-
-$hourBox = New-Object $ComboBox # Hour drop down list
-$hourBox.Text = 'hr'
-$hourBox.Size = New-Object System.Drawing.Size(50,20)
-$hourBox.Location = New-Object System.Drawing.Point(200,30)
-$hourBox.Items.AddRange((0..23 | ForEach-Object {$_.ToString("D2") })) # 24 hour format (0-23)
-
-$minuteBox = New-Object $ComboBox # Minute drop down list
-$minuteBox.Text = 'min'
-$minuteBox.Size = New-Object System.Drawing.Size(50,20)
-$minuteBox.Location = New-Object System.Drawing.Point(260,30)
-$minuteBox.Items.AddRange((0..59 | ForEach-Object {$_.ToString("D2") })) # 2 digit format (00-59)
-
-# Submit Button
-$submit_btn = New-Object $ButtonObject
-$submit_btn.Text = 'Submit'
-$submit_btn.Autosize =  $true
-$submit_btn.Location = New-Object System.Drawing.Point(150,80)
-
-# Button Click Event
-$submit_btn.Add_Click({
-    if ($hourBox.SelectedItem -and $minuteBox.SelectedItem) {
-        # Retrieve the selected hour and minute
-        $hour = $hourBox.SelectedItem
-        $minute = $minuteBox.SelectedItem
-
-        # Schedule the Disk Cleanup task
-        Schedule-DiskCleanup -Hour $hour -Minute $minute
-        [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled at $($hour):$($minute) daily.")
-        $MenuWindow.Close()
-    } else {
-        [System.Windows.Forms.MessageBox]::Show("Please select both hour and minute.", "Error")
-    }
-})
-
-# form2 attachments(text, buttons, dropdownlist)
-$AutoDiskWindow.Controls.AddRange(@($wText, $hourBox, $minuteBox, $submit_btn))
-
-# form3 - for Disk Usage Analyzer
 
 # Display form 1 (Main Menu)
 $MenuWindow.ShowDialog()
