@@ -18,7 +18,7 @@
     <# 
     -> function CheckBoxWindow {..}
         A GUI function that allows user to select specific junk to be
-        deleted later on. It also contains checkboxes.
+        deleted later on. It also contains checkboxes. 
     #>
     function CheckBoxWindow {
         # Automated Disk Cleanup Main Window 
@@ -103,7 +103,8 @@
         -> $textNotif 
             A Text Object that will be used later on if the delButton was
             clicked. It contains blank string if it is the first time to
-            open the program.
+            open the program. The main function of the $textNotif is to
+            notify the user if the process is a success.
         #>
         $textNotif = New-Object $LabelObject
         $textNotif.Font = "Arial, style=Bold"
