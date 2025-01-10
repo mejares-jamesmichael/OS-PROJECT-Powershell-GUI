@@ -11,25 +11,31 @@
     $DataGridView = [System.Windows.Forms.DataGridView] # DataGridView
     # --------------------------------------------------------------
 
-    # ------------------------------------ Variable/s
+    # --------------------- Variable/s -----------------------
     $username = $env:UserName # Gets the current username logged in
     # --------------------------------------------------------
 
-    # ---------------- CHECKLIST FUNCTION TO CLEAN
+    <# 
+    -> function CheckBoxWindow {..}
+        A GUI function that allows user to select specific junk to be
+        deleted later on. It also contains checkboxes.
+    #>
     function CheckBoxWindow {
+        # Automated Disk Cleanup Main Window 
         $adcWindow = New-Object $WindowObj
         $adcWindow.Height = 700
         $adcWindow.Width = 550
         $adcWindow.Text = "Select Junk"
         $adcWindow.StartPosition = "CenterScreen"
 
+        # A text object = "Check the items you wish to delete"        
         $adcText = New-Object $LabelObject
         $adcText.Text = "Check the items you wish to delete"
         $adcText.Size = New-Object System.Drawing.Size(320,30)
         $adcText.Font = "Arial, 10, style=Bold"
         $adcText.Location = New-Object System.Drawing.Point(130,80)
 
-        # CheckBox for Delivery Optimization Files
+        # CheckBox for Delivery Optimization Files 
         $deliveryOptBox = New-Object $CheckBoxObj
         $deliveryOptBox.Location = New-Object System.Drawing.Point(55,110)
         $deliveryOptBox.Size = New-Object System.Drawing.Size(300,40)
@@ -37,7 +43,7 @@
         $deliveryOptBox.Checked = $false
         $deliveryOptBox.Text = "Delivery Optimization Files"
 
-        # CheckBox for DirectX.
+        # CheckBox for DirectX Files
         $direct_x = New-Object $CheckBoxObj
         $direct_x.Location = New-Object System.Drawing.Point(55,140)
         $direct_x.Size = New-Object System.Drawing.Size(300,40)
@@ -69,7 +75,7 @@
         $setup_file.Checked = $false
         $setup_file.Text = "Setup Log Files"
 
-        # CheckBox for temporary files folder.
+        # CheckBox for Temporary files folder.
         $tempBox = New-Object $CheckBoxObj
         $tempBox.Location = New-Object System.Drawing.Point(300,140)
         $tempBox.Size = New-Object System.Drawing.Size(250,40)
@@ -93,14 +99,18 @@
         $thumbnail.Checked = $false
         $thumbnail.Text = "Thumbnails"
 
-        # Notices the user if the folder is cleaned
+        <# 
+        -> $textNotif 
+            A Text Object that will be used later on if the delButton was
+            clicked. It contains blank string if it is the first time to
+            open the program.
+        #>
         $textNotif = New-Object $LabelObject
         $textNotif.Font = "Arial, style=Bold"
         $textNotif.ForeColor = "Red"
         $textNotif.Size = New-Object System.Drawing.Size(220,50)
-        # $textNotif.Location = New-Object System.Drawing.Point(200,350)
 
-        # Delete Button
+        # Delete Button, Button Text is "Clean".
         $delButton = New-Object $ButtonObject
         $delButton.Text = "Clean"
         $delButton.Location = New-Object System.Drawing.Point(210,290)
