@@ -122,8 +122,7 @@
             DataGridView to display scanned data.
             The main function of $dataGridView is it creates a table object
             that displays the junks size in MegaBytes(MB) and junk
-            description.
-        #>
+            description. #>
         $dataGridView = New-Object $DataGridView
         $dataGridView.Location = New-Object System.Drawing.Point(90, 350)
         $dataGridView.Size = New-Object System.Drawing.Size(350, 200) # Adjusted size
@@ -134,8 +133,7 @@
 
         <# -> "function Get-DirectorySize {}"
             A function to get the total size of files in a directory. 
-            It has a parameter that gets every path/folder of junks later on.
-        #>
+            It has a parameter that gets every path/folder of junks later on. #>
         function Get-DirectorySize {
             param (
                 [string]$path
@@ -150,8 +148,7 @@
         <#  -> "$categories @()"
             Insert DataGridView with categories and their total sizes.
             $categories variable is an array that contains the paths/folder 
-            locations of junks and their description.
-        #>
+            locations of junks and their description. #>
         $categories = @(
             @{Path = "$global:driveLetter\Users\$username\AppData\Local\Temp\*"; Description = "Temporary Files"},
             @{Path = "$global:driveLetter\Users\$username\AppData\Local\Microsoft\Windows\Explorer\*"; Description = "Thumbnails"},
@@ -167,8 +164,7 @@
             It loops to get each path/folder locations in the $categories array.
             and add it to each column in table object in the GUI.
             Then it computes the size of each path using the function
-            "Get-DirectorySize." 
-        #>
+            "Get-DirectorySize." #>
         foreach ($category in $categories) {
             $size = Get-DirectorySize -path $category.Path
             $dataGridView.Rows.Add($category.Description, "$size MB", $category.Description)
@@ -178,8 +174,7 @@
             Triggered when button is clicked. It contains many if-else condition
             that checks if the check box was checked. If the check box is
             checked, it will remove the files of the selected junks inside its
-            folders.
-        #>
+            folders. #>
         $delButton.Add_Click({
             if ($deliveryOptBox.Checked -eq $true) {
                 Remove-Item "$global:driveLetter\Windows\SoftwareDistribution\DeliveryOptimization\*" -Force -Recurse
@@ -221,6 +216,8 @@
                 Write-Host "Thumbnail Cleaned Successfully."
             }
 
+            <# Notifies the user if the cleaning was successful or they do not
+            check a box yet. #>
             if ($tempBox.Checked -eq $true -or $recycleBin.Checked -eq $true -or $downloadedFiles.Checked -eq $true -or $tempInBox.Checked -eq $true -or $thumbnail.Checked -eq $true -or $direct_x.Checked -eq $true -or $setup_file.Checked -eq $true -or $deliveryOptBox.Checked -eq $true) {
                 $textNotif.Location = New-Object System.Drawing.Point(195,260)
                 $textNotif.Text = "Cleaning Successful."
