@@ -1,5 +1,7 @@
 ﻿function Get-DiskCleanup {
+    # Allows to run script without restrictions. 
     Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+    # Adds System.Windows.Forms library allowing to use GUI objects.
     Add-Type -AssemblyName System.Windows.Forms
 
     # ---------------- GUI Forms & Objects ------------------------
