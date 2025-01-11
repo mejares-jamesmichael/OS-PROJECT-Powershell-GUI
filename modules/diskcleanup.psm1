@@ -116,7 +116,12 @@
         $delButton.Text = "Clean"
         $delButton.Location = New-Object System.Drawing.Point(210,290)
 
-        # DataGridView to display scanned data
+        <# -> $dataGridView 
+            DataGridView to display scanned data.
+            The main function of $dataGridView is it creates a table object
+            that displays the junks size in MegaBytes(MB) and junk
+            description.
+        #>
         $dataGridView = New-Object $DataGridView
         $dataGridView.Location = New-Object System.Drawing.Point(90, 350)
         $dataGridView.Size = New-Object System.Drawing.Size(350, 200) # Adjusted size
@@ -125,7 +130,10 @@
         $dataGridView.Columns[1].Name = "Size"
         $dataGridView.Columns[2].Name = "Description"
 
-        # Function to get the total size of files in a directory
+        <# -> "function Get-DirectorySize {}"
+            A function to get the total size of files in a directory. 
+            It has a parameter that gets every path/folder of junks later on.
+        #>
         function Get-DirectorySize {
             param (
                 [string]$path
@@ -137,7 +145,11 @@
             return 0
         }
 
-        # Populate DataGridView with categories and their total sizes
+        <#  -> "$categories @()"
+            Insert DataGridView with categories and their total sizes.
+            $categories variable is an array that contains the paths/folder 
+            locations of junks and their description.
+        #>
         $categories = @(
             @{Path = "$global:driveLetter\Users\$username\AppData\Local\Temp\*"; Description = "Temporary Files"},
             @{Path = "$global:driveLetter\Users\$username\AppData\Local\Microsoft\Windows\Explorer\*"; Description = "Thumbnails"},
@@ -149,12 +161,23 @@
             @{Path = "$global:driveLetter\$Recycle.Bin\*"; Description = "Recycle Bin"}
         )
 
+        <# -> "foreach ($category in $categories)" loop
+            It loops to get each path/folder locations in the $categories array.
+            and add it to each column in table object in the GUI.
+            Then it computes the size of each path using the function
+            "Get-DirectorySize." 
+        #>
         foreach ($category in $categories) {
             $size = Get-DirectorySize -path $category.Path
             $dataGridView.Rows.Add($category.Description, "$size MB", $category.Description)
         }
 
-        # Triggers when button is clicked.
+        <# -> "$delButton.Add_Click({})"
+            Triggered when button is clicked. It contains many if-else condition
+            that checks if the check box was checked. If the check box is
+            checked, it will remove the files of the selected junks inside its
+            folders.
+        #>
         $delButton.Add_Click({
             if ($deliveryOptBox.Checked -eq $true) {
                 Remove-Item "$global:driveLetter\Windows\SoftwareDistribution\DeliveryOptimization\*" -Force -Recurse
@@ -206,20 +229,22 @@
             }
         })
 
-        # Add objects to the window.
+        <# -> "$adcWindow.Controls.AddRange"
+            It add objects to the window. #>
         $adcWindow.Controls.AddRange(@($adcText, $tempBox, $recycleBin, $delButton,
                                         $textNotif, $downloadedFiles, $tempInBox,
                                         $thumbnail, $direct_x, $setup_file,
                                         $deliveryOptBox, $dataGridView))
 
-        # Opens the window
+        # Opens/Shows the window
         $adcWindow.ShowDialog()
 
         # Close the window
         $adcWindow.Dispose()
     }
 
-    #---------------------- GUI Variables (Main Window)
+    #-------------------- GUI Variables (Main Window) -------------------------
+    # $mainWindow - it declares a new window object. 
     $mainWindow = New-Object $WindowObj
     $mainWindow.ClientSize = '500,330'
     $mainWindow.Text = 'Automated Disk Cleanup'
@@ -228,42 +253,64 @@
     $mainWindow.MaximizeBox = $false
     $mainWindow.MinimizeBox = $false
 
+    # $adcTitle - A text object entitled "Automated Disk Cleanup"
     $adcTitle = New-Object $LabelObject
     $adcTitle.Text = 'Automated Disk Cleanup'
     $adcTitle.Autosize = $true
     $adcTitle.Font = 'Lucida Console, 10, style=Regular'
     $adcTitle.Location = New-Object System.Drawing.Point(30,100)
 
+    <# $ddlBox - A drop down list, when clicked, it shows a list of drivers
+        example: C:, D:, E: drive
+    #>
     $ddlBox = New-Object $ComboBox
     $ddlBox.Size = New-Object System.Drawing.Size(150,50)
     $ddlBox.Font = 'Arial, 10'
     $ddlBox.Location = New-Object System.Drawing.Point(40,130)
     $ddlBox.DropDownStyle = 'DropDownList'
 
+    # $selectBtn - A button object entitled "Select Drive."
     $selectBtn = New-Object $ButtonObject
     $selectBtn.Text = 'Select Drive'
     $selectBtn.BackColor = 'salmon'
     $selectBtn.Location = New-Object System.Drawing.Point(80,160)
 
+    # $FreeSpaceText - A text object entitled "Free Space:"
     $FreeSpaceText = New-Object $LabelObject
     $FreeSpaceText.Text = 'Free Space:'
     $FreeSpaceText.Location = New-Object System.Drawing.Point(270,130)
 
+    <# $DisplayFreeSpace - 
+        A blank text object that will display free space size in gigabytes(GB)
+        if a driver is selected. 
+    #>
     $DisplayFreeSpace = New-Object $LabelObject
     $DisplayFreeSpace.Location = New-Object System.Drawing.Point(370,130)
 
+    # $TotalSpaceText - A text object entitled "Total Space:"
     $TotalSpaceText = New-Object $LabelObject
     $TotalSpaceText.Text = 'Total Space:'
     $TotalSpaceText.Location = New-Object System.Drawing.Point(270,180)
 
+    <# $DisplayTotalSpace - 
+        A blank text object that will display total space size in gigabytes(GB)
+        if a driver is selected.
+    #>
     $DisplayTotalSpace = New-Object $LabelObject
     $DisplayTotalSpace.Location = New-Object System.Drawing.Point(370,180)
 
+    <# $RefreshBtn -
+        A button object entitled "Refresh". Its main function is to update
+        the data of the free space size displayed in GUI.
+    #>
     $RefreshBtn = New-Object $ButtonObject
     $RefreshBtn.Text = 'Refresh'
     $RefreshBtn.Location = New-Object System.Drawing.Point(360,203)
 
-    # ComboBox for selecting time
+    <# $timeComboBox - 
+        A drop down list that contains time. The user can set time to
+        run the cleaning program automatically.
+    #>
     $timeComboBox = New-Object $ComboBox
     $timeComboBox.Size = New-Object System.Drawing.Size(150,50)
     $timeComboBox.Font = 'Arial, 10'
@@ -271,13 +318,16 @@
     $timeComboBox.DropDownStyle = 'DropDownList'
     $timeComboBox.Items.AddRange(@("12:00AM", "01:00AM", "02:00AM", "03:00AM", "04:00AM", "05:00AM", "06:00AM", "07:00AM", "08:00AM", "09:00AM", "10:00AM", "11:00AM", "12:00PM", "1:00PM", "2:00PM", "3:00PM", "4:00PM", "5:00PM", "6:00PM", "7:00PM", "8:00PM", "9:00PM", "10:00PM", "11:00PM"))
 
-    # Button to save the selected time
+    # $saveTimeBtn - Button object to save the selected time
     $saveTimeBtn = New-Object $ButtonObject
     $saveTimeBtn.Text = 'Save Time'
     $saveTimeBtn.Location = New-Object System.Drawing.Point(200,200)
 
-    # Populate dropdown with drives
+    # $drives - Gets the list of drives using the Get-Volume.
     $drives = Get-Volume
+
+    <# "foreach($drive in $drives) loop"
+        Adds available driver in drop down list. #>
     foreach($drive in $drives) {
         if($null -ne $drive.DriveLetter) {
             $ddlBox.Items.Add($drive.DriveLetter)
@@ -287,25 +337,41 @@
         }
     }
 
+    <# -> $ddlBox.Add_SelectedIndexChanged({..}) -
+        Its main function is to get the size of the free space size and
+        total space size of the driver in MB, convert it to gigabytes(GB) and
+        return sizes in gigabytes(GB). #>
     $ddlBox.Add_SelectedIndexChanged({
         # Gets the available space and total space of the selected driver
         $global:driveLetter = $ddlBox.SelectedItem + ":"
-        Write-Host $global:driveLetter
+        
+        # $DriverDetails - Gets the details of the selected driver letter.
         $DriverDetails = Get-Volume -DriveLetter $ddlBox.SelectedItem
+        
+        # $DriverFreeSpace - Converts the free size MB to GB.
         $DriverFreeSpace = [math]::Round(($DriverDetails.SizeRemaining / 1GB), 2)
         $DisplayFreeSpace.Text = "$DriverFreeSpace GB"
+
+        # $DriverTotalSpace - Converts the total size MB to GB.
         $DriverTotalSpace = [math]::Round(($DriverDetails.Size / 1GB), 2)
         $DisplayTotalSpace.Text = "$DriverTotalSpace GB"
 
-        # To check if the variables returns the correct path/folder.
+        <# "Write-Host $global:driveLetter" -
+            It writes the current driver selected by the user in the terminal.
+            Its main function is to check if the $global:driveLetter 
+            return the correct driver. #>
         Write-Host $global:driveLetter
     })
 
+    <# $saveTimeBtn.Add_Click({..}) -
+        Adds functionality to the "save" button. Its main function is to save
+        time set by the user to clean the desktop.
+    #>
     $saveTimeBtn.Add_Click({
         $selectedTime = $timeComboBox.SelectedItem
         if ($selectedTime) {
             $taskName = "AutomatedDiskCleanup"
-            $taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "C:\Users\james\OS-PROJECT-Powershell-GUI\modules\diskcleanup.psm1"
+            $taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "C:\Users\L E N O V O\Downloads\OS-PROJECT-Powershell-GUI\modules\diskcleanup.psm1"
             $taskTrigger = New-ScheduledTaskTrigger -Daily -At $selectedTime
             $taskPrincipal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
             $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
@@ -316,25 +382,36 @@
         }
     })
 
+    <# $selectBtn.Add_Click({..}) -
+        Adds functionality to the "Select Driver" button. Its main function
+        is to display the GUI of checkboxes of every junk. #>
     $selectBtn.Add_Click({ CheckBoxWindow })
+
+    <# $RefreshBtn.Add_Click({..}) -
+        Adds functionality to the "Refresh" button. Its main function is to
+        update the free space size and total size of drivers in GB. #>
     $RefreshBtn.Add_Click({ 
-        # APPLIES THE SAME PROCESS:
         # Gets the available space and total space of the selected driver
         $global:driveLetter = $ddlBox.SelectedItem + ":"
-        Write-Host $global:driveLetter
+
+        # $DriverDetails - Gets the details of the selected driver letter.
         $DriverDetails = Get-Volume -DriveLetter $ddlBox.SelectedItem
+
+        # $DriverFreeSpace - Converts the free size MB to GB.
         $DriverFreeSpace = [math]::Round(($DriverDetails.SizeRemaining / 1GB), 2)
         $DisplayFreeSpace.Text = "$DriverFreeSpace GB"
+
+        # $DriverTotalSpace - Converts the total size MB to GB.
         $DriverTotalSpace = [math]::Round(($DriverDetails.Size / 1GB), 2)
         $DisplayTotalSpace.Text = "$DriverTotalSpace GB"
 
-        # To check if the variables returns the correct path/folder.
+        # To check if the $global:driveLetter return the correct driver in terminal.
         Write-Host $global:driveLetter
     })
 
-    # Add controls to main window
+    # Add objects to Automated Disk Cleanup Window
     $mainWindow.Controls.AddRange(@($adcTitle, $ddlBox, $selectBtn, $FreeSpaceText, $DisplayFreeSpace, $TotalSpaceText, $DisplayTotalSpace, $RefreshBtn, $timeComboBox, $saveTimeBtn))
 
-    # Display Main Window
+    # Display Automated Disk Cleanup Window
     $mainWindow.ShowDialog()
 }
