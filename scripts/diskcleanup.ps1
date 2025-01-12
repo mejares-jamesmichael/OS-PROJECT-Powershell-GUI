@@ -372,9 +372,8 @@
             $taskName = "AutomatedDiskCleanup"
             $taskAction = New-ScheduledTaskAction -Execute "C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-File `"C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1`""
             $taskTrigger = New-ScheduledTaskTrigger -Daily -At $selectedTime
-            $taskPrincipal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
             $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
-            Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Principal $taskPrincipal -Settings $taskSettings -Force
+            Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Settings $taskSettings -Force
             [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled at $selectedTime daily.", "Schedule Saved", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
         } else {
             [System.Windows.Forms.MessageBox]::Show("Please select a time.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
