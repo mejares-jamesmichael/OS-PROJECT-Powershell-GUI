@@ -1,6 +1,6 @@
 ﻿Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-Import-Module "C:\Users\james\OS-PROJECT-Powershell-GUI\modules\diskusage.psm1"
-Import-Module "C:\Users\james\OS-PROJECT-Powershell-GUI\modules\diskcleanup.psm1"
+. "C:\Users\L E N O V O\Desktop\OS-PROJECT-Powershell-GUI\scripts\diskcleanup.ps1"
+. "C:\Users\L E N O V O\Desktop\OS-PROJECT-Powershell-GUI\scripts\diskusage.ps1"
 
 # Main Menu
 Add-Type -AssemblyName System.Windows.Forms #Type
