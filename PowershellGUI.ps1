@@ -2,8 +2,14 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
 # Import scripts to main GUI
-. "C:\Users\james\OS-PROJECT-Powershell-GUI\scripts\diskcleanup.ps1" #alkways update the file path of each scripts every time you run this the first time in a machine
-. "C:\Users\james\OS-PROJECT-Powershell-GUI\scripts\diskusage.ps1" #alwways update the file path of each scripts every time you run this the fist time in a machine
+<# -> Note:
+    Always update the file path of each scripts every time you run 
+    this the first time in a machine. Do not push your changes in
+    the repo if you only changed the path.
+#>
+. "C:\Users\james\OS-PROJECT-Powershell-GUI\scripts\diskcleanup.ps1" 
+. "C:\Users\james\OS-PROJECT-Powershell-GUI\scripts\diskusage.ps1" 
+# -------------------------------------------------------------------
 
 # Adds System.Windows.Forms library allowing to use GUI objects.
 Add-Type -AssemblyName System.Windows.Forms #Type
