@@ -5,9 +5,11 @@ Import-Module "C:\Users\james\OS-PROJECT-Powershell-GUI\modules\diskcleanup.psm1
 # Main Menu
 Add-Type -AssemblyName System.Windows.Forms #Type
 
+# ------------------- GUI Forms & Objects --------------------------------
 $FormObject = [System.Windows.Forms.Form] # Forms #MenuWindow
 $LabelObject = [System.Windows.Forms.Label] # Text #MenuText
 $ButtonObject = [System.Windows.Forms.Button] # Buttons #MenuButton
+# -------------------------------------------------------------------------
 
 # Create the first panel with a background color
 $Panel = New-Object System.Windows.Forms.Panel
