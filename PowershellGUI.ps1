@@ -8,7 +8,6 @@ Add-Type -AssemblyName System.Windows.Forms #Type
 $FormObject = [System.Windows.Forms.Form] # Forms #MenuWindow
 $LabelObject = [System.Windows.Forms.Label] # Text #MenuText
 $ButtonObject = [System.Windows.Forms.Button] # Buttons #MenuButton
-$ComboBox = [System.Windows.Forms.ComboBox] # ComboBox
 
 # Create the first panel with a background color
 $Panel = New-Object System.Windows.Forms.Panel
@@ -19,10 +18,10 @@ $Panel.Height = 50
 
 #Panel Text in the Homepage
 $PanelText=New-Object $LabelObject # Sets the label
-$PanelText.Text='♜ [O/S Project✔] ➣ 오아시스 .exe                                           ⍰   ❏   ✖' # Text
+$PanelText.Text='♜ [OS Project] ➣ 오아시스 .exe                                                      ⍰   ❏   ✖' # Text
 $PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
 $PanelText.AutoSize= $true
-$PanelText.Font='Impact, 13, style=Bold'
+$PanelText.Font='Impact, 13'
 $PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y
 
 $HeaderText=New-Object $LabelObject # Sets the label
@@ -50,6 +49,7 @@ $PanelText2.AutoSize= $true
 $PanelText2.Font='Consolas, 12, style=Bold'
 $PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y
 
+#PANEL TEXT FOR QUICK GUIDE WINDOW
 $PanelText3=New-Object $LabelObject # Sets the label
 $PanelText3.Text='Click this to set an automated time to run DiskCleanup               ➜' # Text
 $PanelText3.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
@@ -60,6 +60,7 @@ $PanelText3.Font='Consolas, 10'
 $PanelText3.Size = New-Object System.Drawing.Size(220, 50) # Adjust size for multi-line text
 $PanelText3.Location=New-Object System.Drawing.Point(10,85) # x, y
 
+#PANEL TEXT FOR QUICK GUIDE WINDOW
 $PanelText4=New-Object $LabelObject # Sets the label
 $PanelText4.Text='Click to have a           ➜    comprehensive view of Disk Usage' # Text
 $PanelText4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
@@ -117,7 +118,7 @@ $PanelText7.Font='Consolas, 20, style=Bold'
 $PanelText7.Size = New-Object System.Drawing.Size(250, 80) # Adjust size for multi-line text
 $PanelText7.Location=New-Object System.Drawing.Point(10,10) # x, y
 
-#PanelText (Members of the group that contributed)
+#PanelText (Members of the group that contributed) LEARN MORE ABOUT DEVS WINDOW
 $PanelText8=New-Object $LabelObject # Sets the label
 $PanelText8.Text='James Michael Mejares  Justine Delima       Patricia Relente          Bea Ynion                  John Arroyo' # Text
 $PanelText8.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
@@ -128,9 +129,9 @@ $PanelText8.Font='Cascadia Code, 10'
 $PanelText8.Size = New-Object System.Drawing.Size(230, 80) # Adjust size for multi-line text
 $PanelText8.Location=New-Object System.Drawing.Point(50,90) # x, y
 
-#PanelText skull for Learn More about devs
+#PanelText laptop for Learn More about #devs LAPTOP ICON
 $PanelText9=New-Object $LabelObject # Sets the label
-$PanelText9.Text=':' # Text
+$PanelText9.Text=':' # Laptop logo, colon displayed in wingdings fornt
 $PanelText9.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#008282") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText9.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
@@ -139,7 +140,7 @@ $PanelText9.Font='Wingdings, 70'
 $PanelText9.Size = New-Object System.Drawing.Size(250, 90) # Adjust size for multi-line text
 $PanelText9.Location=New-Object System.Drawing.Point(273,30) # x, y
 
-#Panel Page for Rating Window
+#Panel Page for DEVLOG Window
 $Panel5 = New-Object System.Windows.Forms.Panel
 $backgroundHexColor = "#C3C3C3" #hex color grey
 $Panel5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
@@ -147,9 +148,9 @@ $Panel5.Size = New-Object System.Drawing.Size(250, 180)
 $Panel5.Location = New-Object System.Drawing.Point(10, 10)
 $Panel5.Visible = $false
 
-#PanelText for Rating Window
+#PanelText for DEVlOG Window #HEADER THING
 $PanelText10=New-Object $LabelObject # Sets the label
-$PanelText10.Text=' Rating Window ver1.0    _ ❏ ✖ ' # Text
+$PanelText10.Text=' DevLog Window ver1.0    _ ❏ ✖ ' # Text
 $PanelText10.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
 $backgroundHexColor = "#000082" #hex color blue
 $PanelText10.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
@@ -157,19 +158,27 @@ $PanelText10.AutoSize= $true
 $PanelText10.Font='Consolas, 10, style=Bold'
 $PanelText10.Location=New-Object System.Drawing.Point(0,0) # x, y
 
+#PanelText inside DEVLOG window
 $PanelText11=New-Object $LabelObject # Sets the label
-$PanelText11.Text='    Thanks ★★★☆☆' # Text
+$PanelText11.Text='Final project for course Operating System
+
+    Task: GUI Project 
+        Automated Disk Cleanup 
+        Disk Usage Analyzer        
+
+Project started: October: 18, 2024
+Project due date: January 17, 2025' # Text
 $PanelText11.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#C3C3C3" #hex color
 $PanelText11.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText11.AutoSize= $false
-$PanelText11.Font='Lucida Consolas, 18'
-$PanelText11.Size = New-Object System.Drawing.Size(150, 50) # Adjust size for multi-line text
-$PanelText11.Location=New-Object System.Drawing.Point(50,60) # x, y
+$PanelText11.Font='Lucida Consolas, 9'
+$PanelText11.Size = New-Object System.Drawing.Size(500, 300) # Adjust size for multi-line text #x for horizontal y for vertical
+$PanelText11.Location=New-Object System.Drawing.Point(12,40) # x, y #x for horizontal y for vertical
 
-#Button for Rating
+#Button for DEVLOG
 $MenuButton5=New-Object $ButtonObject # RateUs! Button
-$MenuButton5.Text='Rate Us! ☻'
+$MenuButton5.Text='DevLog! ✍'
 $MenuButton5.AutoSize= $true
 $MenuButton5.Font='Lucida Console, 11, style=Regular'
 $MenuButton5.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000")
