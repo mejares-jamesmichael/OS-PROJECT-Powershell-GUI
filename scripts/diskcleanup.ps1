@@ -370,7 +370,7 @@
         $selectedTime = $timeComboBox.SelectedItem
         if ($selectedTime) {
             $taskName = "AutomatedDiskCleanup"
-            $taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "C:\Users\L E N O V O\Downloads\OS-PROJECT-Powershell-GUI\modules\diskcleanup.psm1"
+            $taskAction = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File `"C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1`""
             $taskTrigger = New-ScheduledTaskTrigger -Daily -At $selectedTime
             $taskPrincipal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
             $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
