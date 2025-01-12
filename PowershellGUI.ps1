@@ -1,8 +1,11 @@
-﻿Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+﻿# Allows to run script without restrictions. 
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
+# Import scripts to main GUI
 . "C:\Users\L E N O V O\Desktop\OS-PROJECT-Powershell-GUI\scripts\diskcleanup.ps1"
 . "C:\Users\L E N O V O\Desktop\OS-PROJECT-Powershell-GUI\scripts\diskusage.ps1"
 
-# Main Menu
+# Adds System.Windows.Forms library allowing to use GUI objects.
 Add-Type -AssemblyName System.Windows.Forms #Type
 
 # ------------------- GUI Forms & Objects --------------------------------
