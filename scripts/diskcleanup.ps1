@@ -10,6 +10,7 @@
     $ButtonObject = [System.Windows.Forms.Button] # Button
     $ComboBox = [System.Windows.Forms.ComboBox] # DropDownList
     $CheckBoxObj = [System.Windows.Forms.CheckBox] # CheckBox []
+    $panelObject = [System.Windows.Forms.Panel] # Panel
     $DataGridView = [System.Windows.Forms.DataGridView] # DataGridView
     # --------------------------------------------------------------
 
