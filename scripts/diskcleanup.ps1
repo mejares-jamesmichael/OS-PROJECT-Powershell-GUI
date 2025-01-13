@@ -177,47 +177,94 @@
             folders. #>
         $delButton.Add_Click({
             if ($deliveryOptBox.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Windows\SoftwareDistribution\DeliveryOptimization\*" -Force -Recurse
-                Write-Host "Delivery Opt Box Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Windows\SoftwareDistribution\DeliveryOptimization\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "Delivery Optimization still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Delivery Opt Box Cleaned Successfully."
+                }
             }
-
+        
             if ($direct_x.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Users\$username\AppData\Local\D3DSCache\*" -Force -Recurse
-                Write-Host "DirectX Shader Cache Files Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Users\$username\AppData\Local\D3DSCache\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "DirectX Shader Cache still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "DirectX Shader Cache Files Cleaned Successfully."
+                }
             }
-
+        
             if ($downloadedFiles.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Windows\Downloaded Program Files\*" -Force -Recurse
-                Write-Host "Downloaded Program Files Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Windows\Downloaded Program Files\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "Downloaded Program Files still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Downloaded Program Files Cleaned Successfully."
+                }
             }
-
+        
             if ($recycleBin.Checked -eq $true) {
-                Clear-RecycleBin -Force
-                Write-Host "Recycle Bin Cleaned Successfully."
+                try {
+                    Clear-RecycleBin -Force -ErrorAction Stop
+                } catch {
+                    Write-Host "Recycle Bin still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Recycle Bin Cleaned Successfully."
+                }
             }
-            
+        
             if ($setup_file.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Windows\Panther\*" -Force -Recurse
-                Write-Host "Setup Log Files Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Windows\Panther\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "Setup Log Files still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Setup Log Files Cleaned Successfully."
+                }
             }
-
+        
             if ($tempBox.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Users\$username\AppData\Local\Temp\*" -Force -Recurse
-                Write-Host "Temporary Files Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Users\$username\AppData\Local\Temp\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "Temporary Files still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Temporary Files Cleaned Successfully."
+                }
             }
-
+        
             if ($tempInBox.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Users\$username\AppData\Local\Microsoft\Windows\INetCache\IE\*" -Force -Recurse
-                Write-Host "Temporary Internet Files Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Users\$username\AppData\Local\Microsoft\Windows\INetCache\IE\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "Temporary Internet Files still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Temporary Internet Files Cleaned Successfully."
+                }
             }
-
+        
             if ($thumbnail.Checked -eq $true) {
-                Remove-Item "$global:driveLetter\Users\$username\AppData\Local\Microsoft\Windows\Explorer\*" -Force -Recurse
-                Write-Host "Thumbnail Cleaned Successfully."
+                try {
+                    Remove-Item "$global:driveLetter\Users\$username\AppData\Local\Microsoft\Windows\Explorer\*" -Force -Recurse -ErrorAction Stop
+                } catch {
+                    Write-Host "Thumbnails still retain files that are important or being used by another process"
+                    # Error suppressed
+                } finally {
+                    Write-Host "Thumbnail Cleaned Successfully."
+                }
             }
-
-            <# Notifies the user if the cleaning was successful or they do not
-            check a box yet. #>
+        
+            # Notify the user about the outcome
             if ($tempBox.Checked -eq $true -or $recycleBin.Checked -eq $true -or $downloadedFiles.Checked -eq $true -or $tempInBox.Checked -eq $true -or $thumbnail.Checked -eq $true -or $direct_x.Checked -eq $true -or $setup_file.Checked -eq $true -or $deliveryOptBox.Checked -eq $true) {
                 $textNotif.Location = New-Object System.Drawing.Point(195,260)
                 $textNotif.Text = "Cleaning Successful."
@@ -227,7 +274,7 @@
                 Write-Host "No Items Selected."
             }
         })
-
+            
         <# -> "$adcWindow.Controls.AddRange"
             It add objects to the window. #>
         $adcWindow.Controls.AddRange(@($adcText, $tempBox, $recycleBin, $delButton,
@@ -370,7 +417,7 @@
         $selectedTime = $timeComboBox.SelectedItem
         if ($selectedTime) {
             $taskName = "AutomatedDiskCleanup"
-            $taskAction = New-ScheduledTaskAction -Execute "C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-File `"C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1`""
+            $taskAction = New-ScheduledTaskAction -Execute "C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-File "C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1""
             $taskTrigger = New-ScheduledTaskTrigger -Daily -At $selectedTime
             $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
             Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Settings $taskSettings -Force
