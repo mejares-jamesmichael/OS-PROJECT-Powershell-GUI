@@ -375,6 +375,17 @@
     $timeText.Font = 'Lucida Console, 10'
     $timeText.Location = New-Object System.Drawing.Point(300,230)
 
+    <# -> $dayComboBox - 
+        A drop down list that contains days. (One Time, Daily, Weekly, Monthly)
+        The user will choose how frequent the task will run.
+    #>
+    $dayComboBox = New-Object $ComboBox
+    $dayComboBox.Size = New-Object System.Drawing.Size(150,50)
+    $dayComboBox.Font = 'Arial, 10'
+    $dayComboBox.Location = New-Object System.Drawing.Point(50,250)
+    $dayComboBox.DropDownStyle = 'DropDownList'
+    $dayComboBox.Items.AddRange(@("One Time", "Daily", "Weekly"))
+
     <# $timeComboBox - 
         A drop down list that contains time. The user can set time to
         run the cleaning program automatically.
