@@ -292,7 +292,7 @@
     #-------------------- GUI Variables (Main Window) -------------------------
     # $mainWindow - it declares a new window object. 
     $mainWindow = New-Object $WindowObj
-    $mainWindow.ClientSize = '500,330'
+    $mainWindow.ClientSize = '500,350'
     $mainWindow.Text = 'Automated Disk Cleanup'
     $mainWindow.StartPosition = 'CenterScreen'
     $mainWindow.FormBorderStyle = 'FixedSingle'
