@@ -213,6 +213,7 @@ $MenuWindow.StartPosition = 'CenterScreen' #lanching position
 # Set the form to be non-resizable
 $MenuWindow.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog #make it fixed size
 $MenuWindow.MaximizeBox = $false  # Disable the maximize button
+$MenuWindow.MinimizeBox = $false  # Disable the minimize button
 
 #greetings text in home page #properties
 $MenuText=New-Object $LabelObject # Sets the label
