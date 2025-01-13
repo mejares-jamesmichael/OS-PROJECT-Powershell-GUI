@@ -305,7 +305,7 @@
     $adcTitle.Text = 'Automated Disk Cleanup'
     $adcTitle.Autosize = $true
     $adcTitle.Font = 'Lucida Console, 10, style=Regular'
-    $adcTitle.Location = New-Object System.Drawing.Point(30,100)
+    $adcTitle.Location = New-Object System.Drawing.Point(30,50)
 
     <# $ddlBox - A drop down list, when clicked, it shows a list of drivers
         example: C:, D:, E: drive
