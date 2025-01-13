@@ -447,16 +447,28 @@
         time set by the user to clean the desktop.
     #>
     $saveTimeBtn.Add_Click({
-        $selectedTime = $timeComboBox.SelectedItem
-        if ($selectedTime) {
+        $selectedDay = $dayComboBox.SelectedItem # Gets the selected day in the day combo box
+        $selectedTime = $timeComboBox.SelectedItem # Gets the selected time in the time combo box
+        if ($selectedDay -and $selectedTime) {
             $taskName = "AutomatedDiskCleanup"
             $taskAction = New-ScheduledTaskAction -Execute "C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-File "C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1""
-            $taskTrigger = New-ScheduledTaskTrigger -Daily -At $selectedTime
+            
+            # If-else condition to check the day if selected or null.
+            if ($selectedDay -eq "One Time") {
+                $taskTrigger = New-ScheduledTaskTrigger -Once -At $selectedTime
+            } elseif ($selectedDay -eq "Daily") {
+                $taskTrigger = New-ScheduledTaskTrigger -Daily -At $selectedTime
+            } elseif ($selectedDay -eq "Weekly") {
+                $taskTrigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At $selectedTime
+            }
+            
             $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
             Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Settings $taskSettings -Force
-            [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled at $selectedTime daily.", "Schedule Saved", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+            [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled $selectedDay at $selectedTime daily.", "Schedule Saved", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+            Write-Host "Task set: $selectedDay at $selectedTime"
         } else {
-            [System.Windows.Forms.MessageBox]::Show("Please select a time.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            [System.Windows.Forms.MessageBox]::Show("Please select a date & time.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            Write-Host "Please select day and time."
         }
     })
 
