@@ -500,7 +500,7 @@
     })
 
     # Add objects to Automated Disk Cleanup Window
-    $mainWindow.Controls.AddRange(@($adcTitle, $ddlBox, $selectBtn, $FreeSpaceText, $DisplayFreeSpace, $TotalSpaceText, $DisplayTotalSpace, $RefreshBtn, $timeComboBox, $saveTimeBtn))
+    $mainWindow.Controls.AddRange(@($adcTitle, $ddlBox, $selectBtn, $FreeSpaceText, $DisplayFreeSpace, $TotalSpaceText, $DisplayTotalSpace, $RefreshBtn, $timeComboBox, $saveTimeBtn, $dayComboBox, $dayText, $timeText, $panelBox))
 
     # Display Automated Disk Cleanup Window
     $mainWindow.ShowDialog()
