@@ -361,6 +361,20 @@
     $RefreshBtn.Text = 'Refresh'
     $RefreshBtn.Location = New-Object System.Drawing.Point(320,170)
 
+    # $dayText - A text object that contains text "Select Day"
+    $dayText = New-Object $LabelObject
+    $dayText.Text = "Select Day"
+    $dayText.Autosize = $true
+    $dayText.Font = 'Lucida Console, 10'
+    $dayText.Location = New-Object System.Drawing.Point(80,230)
+
+    # $timeText - A text object that contains text "Select Time"
+    $timeText = New-Object $LabelObject
+    $timeText.Text = "Select Time"
+    $timeText.Autosize = $true
+    $timeText.Font = 'Lucida Console, 10'
+    $timeText.Location = New-Object System.Drawing.Point(300,230)
+
     <# $timeComboBox - 
         A drop down list that contains time. The user can set time to
         run the cleaning program automatically.
