@@ -1,7 +1,7 @@
 ﻿# Allows to run script without restrictions. 
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
-# Import scripts to main GUI
+# Import scripts to main GUI using the dot [.] sourcing operator.
 <# -> Note:
     Always update the file path of each scripts every time you run 
     this the first time in a machine. Do not push your changes in
