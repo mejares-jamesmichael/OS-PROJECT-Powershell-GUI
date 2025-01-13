@@ -22,7 +22,7 @@ $ButtonObject = [System.Windows.Forms.Button] # Buttons #MenuButton
 
 # Create the first panel with a background color #properties
 $Panel = New-Object System.Windows.Forms.Panel
-$backgroundHexColor = "#000082" #hex color
+$backgroundHexColor = "#000082" #hex color #blue
 $Panel.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $Panel.Dock = [System.Windows.Forms.DockStyle]::Top
 $Panel.Height = 50
@@ -32,23 +32,23 @@ $PanelText=New-Object $LabelObject # Sets the label
 $PanelText.Text='♜ [OS Project] ➣ 오아시스 .exe                                                      ⍰   ❏   ✖' # Text
 $PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
 $PanelText.AutoSize= $true
-$PanelText.Font='Impact, 13'
-$PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y
+$PanelText.Font='Impact, 13' #font properties
+$PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y #x fgor horizontal y for vertical
 
 #Header text under the panel #Properites
 $HeaderText=New-Object $LabelObject # Sets the label
 $HeaderText.Text='➭ C:\Windows\system32\powershellGUI.ps1' # Text
-$HeaderText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
+$HeaderText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color #black color
 $HeaderText.AutoSize= $true
-$HeaderText.Font='Consolas,11, style=Underline'
-$HeaderText.Location=New-Object System.Drawing.Point(10,55) # x, y
+$HeaderText.Font='Consolas,11, style=Underline' #font prooperties
+$HeaderText.Location=New-Object System.Drawing.Point(10,55) # x, y #x fgor horizontal y for vertical
 
 #Panel Page for Quick Guide Button #Properties
 $Panel2 = New-Object System.Windows.Forms.Panel
 $backgroundHexColor = "#FFFFFF" #hex color #white
 $Panel2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel2.Size = New-Object System.Drawing.Size(255, 290)
-$Panel2.Location = New-Object System.Drawing.Point(30, 90)
+$Panel2.Size = New-Object System.Drawing.Size(255, 290) #size x y
+$Panel2.Location = New-Object System.Drawing.Point(30, 90) #location x y
 $Panel2.Visible = $false #default state is not visible thus false
 
 #Panel Text in Quick Guide Button #properties
@@ -59,7 +59,7 @@ $backgroundHexColor = "#000082" #hex color #blue
 $PanelText2.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText2.AutoSize= $true
 $PanelText2.Font='Consolas, 12, style=Bold' #font properties
-$PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y
+$PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y #locations
 
 #PANEL TEXT FOR QUICK GUIDE WINDOW #propeties
 $PanelText3=New-Object $LabelObject # Sets the label
@@ -132,7 +132,7 @@ $PanelText7.Location=New-Object System.Drawing.Point(10,10) # x, y
 
 #PanelText (Members of the group that contributed) LEARN MORE ABOUT DEVS WINDOW #properties
 $PanelText8=New-Object $LabelObject # Sets the label
-$PanelText8.Text='James Michael Mejares  Justine Delima       Patricia Relente          Bea Ynion                  John Arroyo' # Text
+$PanelText8.Text='James Michael Mejares  Justine Delima       Patricia Relente          Bea Mae Ynion                  John Matthew Arroyo' # Text
 $PanelText8.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText8.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
@@ -322,18 +322,19 @@ $MenuButton5.Add_Click({ #Triggers when DevLog! is clicked
         $Panel5.BringToFront()  # Bring the panel to the front
     }
 })
+#-------------------------------------------------------------------------------
 
 
-#MenuWindow attachments(text, buttons, dropdownlist) references for the entire system #all the entire GUI system
-$MenuWindow.Controls.AddRange(@( $Panel, $Panel2, $Panel3, $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4))
-$Panel.Controls.Add($PanelText)
-$Panel2.Controls.AddRange(@($PanelText2, $PanelText3, $PanelText4))
-$Panel3.Controls.AddRange(@($Panel4, $PanelText5, $PanelText6))
-$Panel4.Controls.AddRange(@($PanelText7,$PanelText8, $PanelText9, $MenuButton5,$Panel5))
-$Panel5.Controls.AddRange(@($PanelText10,$PanelText11))
+#------------MenuWindow attachments(text, buttons, dropdownlist) references for the entire system #all the entire GUI system--------------------------------------
+$MenuWindow.Controls.AddRange(@( $Panel, $Panel2, $Panel3, $HeaderText, $MenuText, $MenuText2, $MenuText3, $MenuButton, $MenuButton2, $MenuButton3, $MenuButton4)) #main window form and its children
+$Panel.Controls.Add($PanelText) #color blue located on top in main window form
+$Panel2.Controls.AddRange(@($PanelText2, $PanelText3, $PanelText4)) #quick guide window and its children
+$Panel3.Controls.AddRange(@($Panel4, $PanelText5, $PanelText6)) #1st panel page for learn more about devs and its children
+$Panel4.Controls.AddRange(@($PanelText7,$PanelText8, $PanelText9, $MenuButton5,$Panel5)) #2nd panel page for learn more about devs and its children
+$Panel5.Controls.AddRange(@($PanelText10,$PanelText11))#panel page for devlog and its children
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-# Display form 1 (Main Menu)
+#--------------------- Display form 1 (Main Menu)-------------------------------
 $MenuWindow.ShowDialog()
+#-------------------------------------------------------------------------------
