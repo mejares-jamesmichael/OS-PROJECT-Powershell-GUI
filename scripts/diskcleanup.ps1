@@ -362,14 +362,14 @@
     $timeComboBox = New-Object $ComboBox
     $timeComboBox.Size = New-Object System.Drawing.Size(150,50)
     $timeComboBox.Font = 'Arial, 10'
-    $timeComboBox.Location = New-Object System.Drawing.Point(40,200)
+    $timeComboBox.Location = New-Object System.Drawing.Point(270,250)
     $timeComboBox.DropDownStyle = 'DropDownList'
     $timeComboBox.Items.AddRange(@("12:00AM", "01:00AM", "02:00AM", "03:00AM", "04:00AM", "05:00AM", "06:00AM", "07:00AM", "08:00AM", "09:00AM", "10:00AM", "11:00AM", "12:00PM", "1:00PM", "2:00PM", "3:00PM", "4:00PM", "5:00PM", "6:00PM", "7:00PM", "8:00PM", "9:00PM", "10:00PM", "11:00PM"))
 
     # $saveTimeBtn - Button object to save the selected time
     $saveTimeBtn = New-Object $ButtonObject
-    $saveTimeBtn.Text = 'Save Time'
-    $saveTimeBtn.Location = New-Object System.Drawing.Point(200,200)
+    $saveTimeBtn.Text = 'Set Task'
+    $saveTimeBtn.Location = New-Object System.Drawing.Point(200,300)
 
     # $drives - Gets the list of drives using the Get-Volume.
     $drives = Get-Volume
