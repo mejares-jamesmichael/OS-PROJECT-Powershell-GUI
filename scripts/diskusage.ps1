@@ -29,7 +29,8 @@
 
   # Enable visual styles for the application
   [System.Windows.Forms.Application]::EnableVisualStyles() 
-  $formDiskSpacePieChart = New-Object System.Windows.Forms.Form 
+  $formDiskSpacePieChart = New-Object System.Windows.Forms.Form
+  $formDiskSpacePieChart.StartPosition = "CenterScreen" 
       
   # Create a button for saving (commented out)
   #$buttonSave = New-Object System.Windows.Forms.Button 
