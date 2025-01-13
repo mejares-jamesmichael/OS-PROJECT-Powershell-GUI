@@ -321,6 +321,12 @@
     $selectBtn.BackColor = 'salmon'
     $selectBtn.Location = New-Object System.Drawing.Point(80,120)
 
+    # $panelBox = Panel object to scope free, available space and refresh button.
+    $panelBox = New-Object $panelObject
+    $panelBox.Size = New-Object System.Drawing.Size(220,165)
+    $panelBox.Location = New-Object System.Drawing.Point(250,40)
+    $panelBox.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
+
     # $FreeSpaceText - A text object entitled "Free Space:"
     $FreeSpaceText = New-Object $LabelObject
     $FreeSpaceText.Text = 'Free Space:'
