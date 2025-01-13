@@ -83,7 +83,7 @@
           [switch]$Append)
 
           # Initialize the ChartAreaIndex to 0
-          ChartAreaIndex = 0 
+          $ChartAreaIndex = 0 
 
           # Check if the Append switch is set
           if($Append) 
