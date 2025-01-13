@@ -312,38 +312,40 @@
     $ddlBox = New-Object $ComboBox
     $ddlBox.Size = New-Object System.Drawing.Size(150,50)
     $ddlBox.Font = 'Arial, 10'
-    $ddlBox.Location = New-Object System.Drawing.Point(40,130)
+    $ddlBox.Location = New-Object System.Drawing.Point(40,90)
     $ddlBox.DropDownStyle = 'DropDownList'
 
     # $selectBtn - A button object entitled "Select Drive."
     $selectBtn = New-Object $ButtonObject
     $selectBtn.Text = 'Select Drive'
     $selectBtn.BackColor = 'salmon'
-    $selectBtn.Location = New-Object System.Drawing.Point(80,160)
+    $selectBtn.Location = New-Object System.Drawing.Point(80,120)
 
     # $FreeSpaceText - A text object entitled "Free Space:"
     $FreeSpaceText = New-Object $LabelObject
     $FreeSpaceText.Text = 'Free Space:'
-    $FreeSpaceText.Location = New-Object System.Drawing.Point(270,130)
+    $FreeSpaceText.Location = New-Object System.Drawing.Point(270,70)
 
     <# $DisplayFreeSpace - 
         A blank text object that will display free space size in gigabytes(GB)
         if a driver is selected. 
     #>
     $DisplayFreeSpace = New-Object $LabelObject
-    $DisplayFreeSpace.Location = New-Object System.Drawing.Point(370,130)
+    $DisplayFreeSpace.AutoSize = $true
+    $DisplayFreeSpace.Location = New-Object System.Drawing.Point(370,70)
 
     # $TotalSpaceText - A text object entitled "Total Space:"
     $TotalSpaceText = New-Object $LabelObject
     $TotalSpaceText.Text = 'Total Space:'
-    $TotalSpaceText.Location = New-Object System.Drawing.Point(270,180)
+    $TotalSpaceText.Location = New-Object System.Drawing.Point(270,140)
 
     <# $DisplayTotalSpace - 
         A blank text object that will display total space size in gigabytes(GB)
         if a driver is selected.
     #>
     $DisplayTotalSpace = New-Object $LabelObject
-    $DisplayTotalSpace.Location = New-Object System.Drawing.Point(370,180)
+    $DisplayTotalSpace.AutoSize = $true
+    $DisplayTotalSpace.Location = New-Object System.Drawing.Point(370,140)
 
     <# $RefreshBtn -
         A button object entitled "Refresh". Its main function is to update
@@ -351,7 +353,7 @@
     #>
     $RefreshBtn = New-Object $ButtonObject
     $RefreshBtn.Text = 'Refresh'
-    $RefreshBtn.Location = New-Object System.Drawing.Point(360,203)
+    $RefreshBtn.Location = New-Object System.Drawing.Point(320,170)
 
     <# $timeComboBox - 
         A drop down list that contains time. The user can set time to
