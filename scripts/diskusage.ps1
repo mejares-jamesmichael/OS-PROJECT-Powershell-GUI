@@ -368,14 +368,13 @@
       $formDiskSpacePieChart.Controls.Add($lblServicePack) 
       $formDiskSpacePieChart.Controls.Add($lblOS) 
       $formDiskSpacePieChart.Controls.Add($lblDBName) 
-      $formDiskSpacePieChart.Controls.Add($statusBar1) 
-      $formDiskSpacePieChart.Controls.Add($btnClose) 
+      $formDiskSpacePieChart.Controls.Add($statusBar1)
       $formDiskSpacePieChart.Controls.Add($txtComputerName) 
       $formDiskSpacePieChart.ClientSize = New-Object System.Drawing.Size(600, 600) 
       $formDiskSpacePieChart.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation  
       $formDiskSpacePieChart.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::SizableToolWindow  
       $formDiskSpacePieChart.Name = "form1" 
-      $formDiskSpacePieChart.Text = "Disk Space Information" 
+      $formDiskSpacePieChart.Text = "Disk Usage Analyzer" 
       $formDiskSpacePieChart.add_Load($PopulateList) 
       $formDiskSpacePieChart.add_Load($FormEvent_Load) 
       
@@ -410,17 +409,6 @@
       $btnRefresh.Text = "GetDiskSpace" 
       $btnRefresh.UseVisualStyleBackColor = $True 
       $btnRefresh.add_Click($GetData) 
-
-      # btnClose 
-      $btnClose.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation  
-      $btnClose.Enabled = $TRUE 
-      $btnClose.Location = New-Object System.Drawing.Point(373, 35) 
-      $btnClose.Name = "btnClose" 
-      $btnClose.Size = New-Object System.Drawing.Size(95, 20) 
-      $btnClose.TabIndex = 3 
-      $btnClose.Text = "Close" 
-      $btnClose.UseVisualStyleBackColor = $True 
-      $btnClose.add_Click($Close) 
 
       # lblDBName 
       $lblDBName.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation  
