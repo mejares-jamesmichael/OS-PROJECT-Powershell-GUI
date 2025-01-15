@@ -376,10 +376,10 @@
 
     # $dayText - A text object that contains text "Select Day"
     $dayText = New-Object $LabelObject
-    $dayText.Text = "Select Day"
+    $dayText.Text = "Select Frequency"
     $dayText.Autosize = $true
     $dayText.Font = 'Lucida Console, 10'
-    $dayText.Location = New-Object System.Drawing.Point(80,230)
+    $dayText.Location = New-Object System.Drawing.Point(55,230)
 
     # $timeText - A text object that contains text "Select Time"
     $timeText = New-Object $LabelObject
