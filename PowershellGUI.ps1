@@ -21,16 +21,35 @@ $ButtonObject = [System.Windows.Forms.Button] # Buttons #MenuButton
 # -------------------------------------------------------------------------
 
 # Create the first panel with a background color #properties
-$Panel = New-Object System.Windows.Forms.Panel
-$backgroundHexColor = "#000082" #hex color #blue
-$Panel.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel.Dock = [System.Windows.Forms.DockStyle]::Top
-$Panel.Height = 50
+$Panel = New-Object System.Windows.Forms.Panel #panel is the gradient color blue you found on top of the homepage
+$Panel.Dock = [System.Windows.Forms.DockStyle]::Top #panel is locateed on top
+$Panel.Height = 50 #panel color height
+
+# parameter that makes the gradient color 
+$Panel.Add_Paint({
+    param ($panelforgradient, $paintargs)
+    # Define the gradient colors #make the gradient color variables
+    $startColor = [System.Drawing.ColorTranslator]::FromHtml("#000082") # Dark Blue
+    $endColor = [System.Drawing.ColorTranslator]::FromHtml("#1E90FF")  # Dodger Blue
+
+    # Create a LinearGradientBrush
+    $gradientBrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
+        $panelforgradient.ClientRectangle,
+        $startColor,
+        $endColor,
+        [System.Drawing.Drawing2D.LinearGradientMode]::Horizontal #paint the panel horizontal gradient
+    )
+
+    # Fill the panel background with the gradient
+    $paintargs.Graphics.FillRectangle($gradientBrush, $panelforgradient.ClientRectangle)
+    $gradientBrush.Dispose()
+})
 
 #Panel Text in the Homepage #properties
 $PanelText=New-Object $LabelObject # Sets the label
-$PanelText.Text='♜ [OS Project] ➣ 오아시스 .exe                                                      ⍰   ❏   ✖' # Text
-$PanelText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#FFFCF5") #Font color
+$PanelText.Text='♜ [OS Project] ➣ WinDisk95.exe                                                      ⍰   ❏   ✖' # Text
+$PanelText.ForeColor = [System.Drawing.Color]::White #Font color
+$PanelText.BackColor = [System.Drawing.Color]::Transparent
 $PanelText.AutoSize= $true
 $PanelText.Font='Impact, 13' #font properties
 $PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y #x fgor horizontal y for vertical
@@ -61,9 +80,11 @@ $PanelText2.AutoSize= $true
 $PanelText2.Font='Consolas, 12, style=Bold' #font properties
 $PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y #locations
 
+#----------------------TODO: QUICK GUIDE TEXT THAT TELL WHAT IS THIS SYSTEM AND WHAT ITS PURPOSE--------------------------------
+
 #PANEL TEXT FOR QUICK GUIDE WINDOW #propeties
 $PanelText3=New-Object $LabelObject # Sets the label
-$PanelText3.Text='Click this to set an automated time to run DiskCleanup               ➜' # Text
+$PanelText3.Text='Click this to set an automated task to run DiskCleanup               ➜' # Text
 $PanelText3.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color #black
 $backgroundHexColor = "#FFFFFF" #hex color #white
 $PanelText3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
@@ -205,7 +226,7 @@ $MenuButton5.Location=New-Object System.Drawing.Point(280,150)
 #HomnePage Window #properties
 $MenuWindow=New-Object $FormObject #reference form
 $MenuWindow.ClientSize='500,450' # (X,Y)
-$MenuWindow.Text='Homepage' # Label above the window
+$MenuWindow.Text='WinDisk98' # Label above the window
 $backgroundHexColor = "#C0C0C0" #hex color grey
 $MenuWindow.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuWindow.StartPosition = 'CenterScreen' #lanching position
@@ -217,7 +238,7 @@ $MenuWindow.MinimizeBox = $false  # Disable the minimize button
 
 #greetings text in home page #properties
 $MenuText=New-Object $LabelObject # Sets the label
-$MenuText.Text='Hello User!' # Text
+$MenuText.Text='Greetings User!' # Text
 $MenuText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color black
 $MenuText.AutoSize= $true
 $MenuText.Font='Consolas,15' #Font, Size, style=style #font properties
