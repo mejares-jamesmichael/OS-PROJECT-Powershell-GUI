@@ -29,6 +29,10 @@
         $adcWindow.Height = 700
         $adcWindow.Width = 550
         $adcWindow.Text = "Select Junk"
+        $backgroundHexColor = "#C0C0C0" #hex color grey
+        $adcWindow.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+        $adcWindow.MaximizeBox = $false  # Disable the maximize button
+        $adcWindow.MinimizeBox = $false  # Disable the minimize button
         $adcWindow.StartPosition = "CenterScreen"
 
         # A text object = "Check the items you wish to delete"        
@@ -297,6 +301,8 @@
     $mainWindow.Text = 'Automated Disk Cleanup'
     $mainWindow.StartPosition = 'CenterScreen'
     $mainWindow.FormBorderStyle = 'FixedSingle'
+    $backgroundHexColor = "#C0C0C0" #hex color grey
+    $mainWindow.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
     $mainWindow.MaximizeBox = $false
     $mainWindow.MinimizeBox = $false
 
@@ -318,9 +324,13 @@
 
     # $selectBtn - A button object entitled "Select Drive."
     $selectBtn = New-Object $ButtonObject
-    $selectBtn.Text = 'Select Drive'
-    $selectBtn.BackColor = 'salmon'
-    $selectBtn.Location = New-Object System.Drawing.Point(80,120)
+    $selectBtn.Text = 'Select Drive ▶'
+    $selectBtn.AutoSize= $true
+    $selectBtn.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#ffffff") #black
+    $backgroundHexColor = "#000080" #hex color #grey color
+    $selectBtn.Font='Arial, 9, style=Bold' #font properties
+    $selectBtn.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
+    $selectBtn.Location = New-Object System.Drawing.Point(65,120) #xy
 
     # $panelBox = Panel object to scope free, available space and refresh button.
     $panelBox = New-Object $panelObject
@@ -359,8 +369,10 @@
         the data of the free space size displayed in GUI.
     #>
     $RefreshBtn = New-Object $ButtonObject
-    $RefreshBtn.Text = 'Refresh'
-    $RefreshBtn.Location = New-Object System.Drawing.Point(320,170)
+    $RefreshBtn.Text = 'Refresh ↻'
+    $RefreshBtn.Autosize = $true
+    $RefreshBtn.Font='Arial, 9, style=Bold' #font properties
+    $RefreshBtn.Location = New-Object System.Drawing.Point(325,170) #xy
 
     # $dayText - A text object that contains text "Select Day"
     $dayText = New-Object $LabelObject
@@ -400,7 +412,9 @@
 
     # $saveTimeBtn - Button object to save the selected time
     $saveTimeBtn = New-Object $ButtonObject
-    $saveTimeBtn.Text = 'Set Task'
+    $saveTimeBtn.Text = 'Set Task ⏱'
+    $saveTimeBtn.Autosize = $True
+    $saveTimeBtn.Font='Arial, 9, style=Bold' #font properties
     $saveTimeBtn.Location = New-Object System.Drawing.Point(200,300)
 
     # $drives - Gets the list of drives using the Get-Volume.
