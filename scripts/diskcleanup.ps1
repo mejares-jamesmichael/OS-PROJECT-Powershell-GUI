@@ -466,7 +466,7 @@
         $selectedTime = $timeComboBox.SelectedItem # Gets the selected time in the time combo box
         if ($selectedDay -and $selectedTime) {
             $taskName = "AutomatedDiskCleanup"
-            $taskAction = New-ScheduledTaskAction -Execute "C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-File "C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1""
+            $taskAction = New-ScheduledTaskAction -Execute "C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-File `"C:\Users\$username\Desktop\OS-PROJECT-Powershell-GUI\PowershellGUI.ps1`""
             
             # If-else condition to check the day if selected or null.
             if ($selectedDay -eq "One Time") {
