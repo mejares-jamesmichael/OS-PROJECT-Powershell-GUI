@@ -479,7 +479,7 @@
             
             $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
             Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -Settings $taskSettings -Force
-            [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled $selectedDay at $selectedTime daily.", "Schedule Saved", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+            [System.Windows.Forms.MessageBox]::Show("Disk Cleanup scheduled $selectedDay at $selectedTime.", "Schedule Saved", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
             Write-Host "Task set: $selectedDay at $selectedTime"
         } else {
             [System.Windows.Forms.MessageBox]::Show("Please select a date & time.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
