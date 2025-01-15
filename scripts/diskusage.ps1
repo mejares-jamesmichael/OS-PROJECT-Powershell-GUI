@@ -31,6 +31,8 @@
   [System.Windows.Forms.Application]::EnableVisualStyles() 
   $formDiskSpacePieChart = New-Object System.Windows.Forms.Form
   $formDiskSpacePieChart.StartPosition = "CenterScreen" 
+  $backgroundHexColor = "#b3b4ba" #hex color grey
+  $formDiskSpacePieChart.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
       
   # Create a button for saving (commented out)
   #$buttonSave = New-Object System.Windows.Forms.Button 
@@ -51,7 +53,6 @@
   $lblServicePack = New-Object System.Windows.Forms.Label 
   $lblDBName = New-Object System.Windows.Forms.Label 
   $lblOS = New-Object System.Windows.Forms.Label 
-  $statusBar1 = New-Object System.Windows.Forms.StatusBar 
   $btnClose = New-Object System.Windows.Forms.Button 
       
   # Create a ComboBox for selecting servers (commented out)
@@ -326,22 +327,27 @@
 
       # Define a script block to get disk space details
       $GetData = { 
-          $statusBar1.text = "Getting Disk Space Details Data..please wait" 
-      
+            #update the status label text
+            $formDiskSpacePieChart.Invoke([Action]{
+                $statusLabel.text = "[Status Bar: Getting Disk Space Details Data..please wait]" 
+            })
           # Check if the specified computer is reachable by pinging it
           if(Test-Connection -ComputerName $txtComputerName.text -Count 1 -ea 0) {  
               $data = Get-DiskDetails -ComputerName $txtComputerName.text | Out-String 
               Load-PieChart -servers $txtComputerName.text  
           } 
-          else 
-          { 
-              [Windows.Forms.MessageBox]::Show("Unable to connect to the server!!") 
+          else { 
+              [Windows.Forms.MessageBox]::Show("Unable to connect to the server!") 
           } 
       
           # Uncomment the line below to display the retrieved data in a RichTextBox (currently commented out)
           # $rtbPerfData.text = $data.Trim() 
           $errorActionPreference = "Continue" 
-          $statusBar1.Text = "Ready" 
+
+          #Update teh status label text to "READY"
+          $formDiskSpacePieChart.Invoke([Action]{
+              $statusLabel.Text = "[Status Bar: Disk Information Displayed]"
+          }) 
       } 
 
       # Define a script block to close the form
@@ -367,8 +373,7 @@
       $formDiskSpacePieChart.Controls.Add($btnRefresh) 
       $formDiskSpacePieChart.Controls.Add($lblServicePack) 
       $formDiskSpacePieChart.Controls.Add($lblOS) 
-      $formDiskSpacePieChart.Controls.Add($lblDBName) 
-      $formDiskSpacePieChart.Controls.Add($statusBar1)
+      $formDiskSpacePieChart.Controls.Add($lblDBName)
       $formDiskSpacePieChart.Controls.Add($txtComputerName) 
       $formDiskSpacePieChart.ClientSize = New-Object System.Drawing.Size(600, 600) 
       $formDiskSpacePieChart.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation  
@@ -406,7 +411,7 @@
       $btnRefresh.Name = "btnRefresh" 
       $btnRefresh.Size = New-Object System.Drawing.Size(95, 20) 
       $btnRefresh.TabIndex = 7 
-      $btnRefresh.Text = "GetDiskSpace" 
+      $btnRefresh.Text = "GetDiskSpace ▶" 
       $btnRefresh.UseVisualStyleBackColor = $True 
       $btnRefresh.add_Click($GetData) 
 
@@ -448,13 +453,22 @@
       $lblOS.Text = "Service Information" 
       $lblOS.Visible = $False 
 
-      # statusBar1 
-      $statusBar1.DataBindings.DefaultDataSourceUpdateMode = [System.Windows.Forms.DataSourceUpdateMode]::OnValidation  
-      $statusBar1.Location = New-Object System.Drawing.Point(0, 365) 
-      $statusBar1.Name = "statusBar1" 
-      $statusBar1.Size = New-Object System.Drawing.Size(390, 22) 
-      $statusBar1.TabIndex = 5 
-      $statusBar1.Text = "statusBar1"  
+      # statusStrip
+      $statusStrip = New-Object System.Windows.Forms.StatusStrip
+      $statusStrip.Location = New-Object System.Drawing.Point(0, 365) 
+      $statusStrip.Name = "statusStrip" 
+      $statusStrip.Size = New-Object System.Drawing.Size(390, 22) 
+      $statusStrip.TabIndex = 5 
+      $statusStrip.Text = "statusStrip"  
+      $statusStrip.BackColor = [System.Drawing.Color]::LightGreen # Set the background color
+
+       #statuslabel
+       $statusLabel = New-Object System.Windows.Forms.ToolStripStatusLabel
+       $statusLabel.Text = "[Status Bar: Empty]"
+       $statusLabel.ForeColor = [System.Drawing.Color]::Black  # Set the text color
+       
+       $statusStrip.Items.Add($statusLabel) 
+       $formDiskSpacePieChart.Controls.Add($statusStrip)
 
       # chart1 
       $chart1.Anchor = [System.Windows.Forms.AnchorStyles]::Top -bor [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left -bor [System.Windows.Forms.AnchorStyles]::Right  

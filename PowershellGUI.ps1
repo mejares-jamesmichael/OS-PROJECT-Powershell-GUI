@@ -226,7 +226,7 @@ $MenuButton5.Location=New-Object System.Drawing.Point(280,150)
 #HomnePage Window #properties
 $MenuWindow=New-Object $FormObject #reference form
 $MenuWindow.ClientSize='500,450' # (X,Y)
-$MenuWindow.Text='WinDisk98' # Label above the window
+$MenuWindow.Text='WinDisk95' # Label above the window
 $backgroundHexColor = "#C0C0C0" #hex color grey
 $MenuWindow.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuWindow.StartPosition = 'CenterScreen' #lanching position
