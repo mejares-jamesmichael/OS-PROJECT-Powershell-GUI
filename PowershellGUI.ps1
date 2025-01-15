@@ -54,13 +54,13 @@ $PanelText.AutoSize= $true
 $PanelText.Font='Impact, 13' #font properties
 $PanelText.Location=New-Object System.Drawing.Point(5,15) # x, y #x fgor horizontal y for vertical
 
-#Header text under the panel #Properites
+#Header text under the panel #Properties
 $HeaderText=New-Object $LabelObject # Sets the label
 $HeaderText.Text='➭ C:\Windows\system32\powershellGUI.ps1' # Text
 $HeaderText.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color #black color
 $HeaderText.AutoSize= $true
-$HeaderText.Font='Consolas,11, style=Underline' #font prooperties
-$HeaderText.Location=New-Object System.Drawing.Point(10,55) # x, y #x fgor horizontal y for vertical
+$HeaderText.Font='Consolas,11, style=Underline' #font properties
+$HeaderText.Location=New-Object System.Drawing.Point(10,55) # x, y #x for horizontal y for vertical
 
 #Panel Page for Quick Guide Button #Properties
 $Panel2 = New-Object System.Windows.Forms.Panel
@@ -80,9 +80,9 @@ $PanelText2.AutoSize= $true
 $PanelText2.Font='Consolas, 12, style=Bold' #font properties
 $PanelText2.Location=New-Object System.Drawing.Point(0,0) # x, y #locations
 
-#----------------------TODO: QUICK GUIDE TEXT THAT TELL WHAT IS THIS SYSTEM AND WHAT ITS PURPOSE--------------------------------
+#---------------------- QUICK GUIDE TEXT THAT TELL WHAT IS THIS SYSTEM AND WHAT ITS PURPOSE--------------------------------
 
-#PANEL TEXT FOR QUICK GUIDE WINDOW #propeties
+#PANEL TEXT FOR QUICK GUIDE WINDOW #properties
 $PanelText3=New-Object $LabelObject # Sets the label
 $PanelText3.Text='Click this to set an automated task to run DiskCleanup               ➜' # Text
 $PanelText3.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color #black
@@ -96,19 +96,19 @@ $PanelText3.Location=New-Object System.Drawing.Point(10,85) # x, y
 #PANEL TEXT FOR QUICK GUIDE WINDOW #properties
 $PanelText4=New-Object $LabelObject # Sets the label
 $PanelText4.Text='Click to have a           ➜    comprehensive view of Disk Usage' # Text
-$PanelText4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color #blacvk
+$PanelText4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #Font color #black
 $backgroundHexColor = "#FFFFFF" #hex color #white
 $PanelText4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText4.AutoSize= $false
-$PanelText4.Font='Consolas, 10'#fornt properties
+$PanelText4.Font='Consolas, 10'#font properties
 $PanelText4.Size = New-Object System.Drawing.Size(220, 50) # Adjust size for multi-line text
 $PanelText4.Location=New-Object System.Drawing.Point(10,155) # x, y
 
-#Panel Page for Learn More about Devs #propeties
+#Panel Page for Learn More about Devs #properties
 $Panel3 = New-Object System.Windows.Forms.Panel
 $backgroundHexColor = "#B3B4BA" #hex color grey
 $Panel3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel3.Size = New-Object System.Drawing.Size(440, 290) #x y adjust size for how vertical and horiznontal size
+$Panel3.Size = New-Object System.Drawing.Size(440, 290) #x y adjust size for how vertical and horizontal size
 $Panel3.Location = New-Object System.Drawing.Point(30, 90) #x y adjust vertical and horizontal location
 $Panel3.Visible = $false #default state is not visible thus false
 
@@ -116,7 +116,7 @@ $Panel3.Visible = $false #default state is not visible thus false
 $Panel4 = New-Object System.Windows.Forms.Panel
 $backgroundHexColor = "#FFFFFF" #hex color white
 $Panel4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel4.Size = New-Object System.Drawing.Size(400, 200) #x y adjust size for how vertical and horiznontal size
+$Panel4.Size = New-Object System.Drawing.Size(400, 200) #x y adjust size for how vertical and horizontal size
 $Panel4.Location = New-Object System.Drawing.Point(20, 70) #x y adjust vertical and horizontal location
 $Panel4.Visible = $true #default state is visible thus true
 
@@ -137,7 +137,7 @@ $PanelText6.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #F
 $backgroundHexColor = "#B3B4BA" #hex color
 $PanelText6.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText6.AutoSize= $true
-$PanelText6.Font='Consolas, 9,style=Underline' #fornt properties
+$PanelText6.Font='Consolas, 9,style=Underline' #font properties
 $PanelText6.Location=New-Object System.Drawing.Point(10,35) # x, y
 
 #PanelText for LearnMoreAboutDevs #properties
@@ -164,22 +164,22 @@ $PanelText8.Location=New-Object System.Drawing.Point(50,90) # x, y adjust for lo
 
 #PanelText laptop for Learn More about #devs LAPTOP ICON
 $PanelText9=New-Object $LabelObject # Sets the label
-$PanelText9.Text=':' # Laptop logo, colon displayed in wingdings fornt
+$PanelText9.Text=':' # Laptop logo, colon displayed in wingdings font
 $PanelText9.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#008282") #Font color
 $backgroundHexColor = "#FFFFFF" #hex color
 $PanelText9.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $PanelText9.AutoSize= $false
 $PanelText9.Font='Wingdings, 70' #font properties
 $PanelText9.Size = New-Object System.Drawing.Size(250, 90) # Adjust size for multi-line text using x y
-$PanelText9.Location=New-Object System.Drawing.Point(273,30) # x, y adjsut location vertical n horizontal
+$PanelText9.Location=New-Object System.Drawing.Point(273,30) # x, y adjust location vertical n horizontal
 
 #Panel Page for DEVLOG Window #propetires
 $Panel5 = New-Object System.Windows.Forms.Panel
 $backgroundHexColor = "#C3C3C3" #hex color grey
 $Panel5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$Panel5.Size = New-Object System.Drawing.Size(250, 180) #x y horizontal and vetical size
+$Panel5.Size = New-Object System.Drawing.Size(250, 180) #x y horizontal and vertical size
 $Panel5.Location = New-Object System.Drawing.Point(10, 10) #x y horizontal and vertical adjust location
-$Panel5.Visible = $false #default state is not visible thjus false
+$Panel5.Visible = $false #default state is not visible thus false
 
 #PanelText for DEVlOG Window #HEADER THING #properties
 $PanelText10=New-Object $LabelObject # Sets the label
@@ -220,16 +220,15 @@ $MenuButton5.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundH
 $MenuButton5.Size=New-Object System.Drawing.Size(10,10)
 $MenuButton5.Location=New-Object System.Drawing.Point(280,150)
 
-
 #------------------------------------------------------------------------------------
 
-#HomnePage Window #properties
+#HomePage Window #properties
 $MenuWindow=New-Object $FormObject #reference form
 $MenuWindow.ClientSize='500,450' # (X,Y)
 $MenuWindow.Text='WinDisk95' # Label above the window
 $backgroundHexColor = "#C0C0C0" #hex color grey
 $MenuWindow.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
-$MenuWindow.StartPosition = 'CenterScreen' #lanching position
+$MenuWindow.StartPosition = 'CenterScreen' #launching position
 
 # Set the form to be non-resizable
 $MenuWindow.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog #make it fixed size
@@ -260,7 +259,7 @@ $MenuText3.AutoSize= $true
 $MenuText3.Font='Grandview,13' #Font, Size, style=style #font properties
 $MenuText3.Location=New-Object System.Drawing.Point(55,245) # x, y adjust for location horizontal n vertical
 
-#AutoDiskCleanup Button #propeties
+#AutoDiskCleanup Button #properties
 $MenuButton=New-Object $ButtonObject # AutoDiskCleanup Button
 $MenuButton.Text='Disk Cleanup' #text
 $MenuButton.AutoSize= $true
@@ -293,16 +292,16 @@ $MenuButton3.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundH
 $MenuButton3.Size=New-Object System.Drawing.Size(140,30) #x y adjust size for horizontal n vertical
 $MenuButton3.Location=New-Object System.Drawing.Point(300,280) #x y adjust location for horizontal n vertical
 
-#CheckTheDevs Button #proopeties
+#CheckTheDevs Button #properties
 $MenuButton4=New-Object $ButtonObject # CheckTheDevs Button
 $MenuButton4.Text='Learn more about the Devs!' #text
 $MenuButton4.AutoSize= $true
-$MenuButton4.Font='Lucida Console, 11, style=Regular' #font propeties
+$MenuButton4.Font='Lucida Console, 11, style=Regular' #font properties
 $MenuButton4.ForeColor = [System.Drawing.ColorTranslator]::FromHtml("#000000") #black
 $backgroundHexColor = "#C3C3C3" #hex color
 $MenuButton4.BackColor = [System.Drawing.ColorTranslator]::FromHtml($backgroundHexColor) #translating hex color
 $MenuButton4.Size=New-Object System.Drawing.Size(140,30) #x y adjust size for horizontal n vertical
-$MenuButton4.Location=New-Object System.Drawing.Point(120,400) #x y adjust location for horizontal n vertica
+$MenuButton4.Location=New-Object System.Drawing.Point(120,400) #x y adjust location for horizontal n vertical
 
 
 #-------------------------BUTTON FUNCTIONALITIES--------------------------------
